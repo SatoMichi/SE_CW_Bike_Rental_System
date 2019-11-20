@@ -13,4 +13,3 @@ source file for CW3
 
 11/20:
   Fixed and uploaded cw2_diagram
-  uploaded cw1_diagram
