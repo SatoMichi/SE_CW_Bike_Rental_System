@@ -10,3 +10,7 @@ submitted CW1 CW2
 diagram used in CW2
 
 source file for CW3
+
+11/20:
+  Fixed and uploaded cw2_diagram
+  uploaded cw1_diagram
