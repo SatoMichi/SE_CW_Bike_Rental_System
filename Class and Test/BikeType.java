@@ -4,10 +4,18 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public class BikeType {
-    private String type;
+    
+    public enum biketype{
+        Road_Bike,
+        Mountain_Bike,
+        Hybrid_Bike,
+        E_Bike
+    }
+    
+    private biketype type;
     private BigDecimal repValue;
     
-    public BikeType(String type, BigDecimal rep) {
+    public BikeType(biketype type, BigDecimal rep) {
         this.setType(type);
         this.repValue = rep;
     }
@@ -16,15 +24,15 @@ public class BikeType {
         return repValue;
     }
 
-    public String getType() {
+    public biketype getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(biketype type) {
         this.type = type;
     }
     
     public String toString() {
-        return type;
+        return type.toString();
     }
 }
