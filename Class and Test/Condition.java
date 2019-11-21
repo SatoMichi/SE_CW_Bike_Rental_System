@@ -29,8 +29,11 @@ public class Condition {
         this.type = type;
     }
 
-    public BigDecimal getPrice() {
-        return price;
+    public BigDecimal getMinPrice() {
+        return minPrice;
+    }
+    public BigDecimal getMaxPrice() {
+        return maxPrice;
     }
 
     public void setPrice(BigDecimal minPrice, BigDecimal maxPrice) {
@@ -70,4 +73,3 @@ public class Condition {
         this.number = number;
     }
 }
-
