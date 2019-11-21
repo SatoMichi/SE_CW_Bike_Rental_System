@@ -9,6 +9,8 @@ added price range in class Condition
 
 updated class diagram
 
+revert change to Bike type from BikeType back to string. Reason: you don't know how many kind of bike types there are.
+
 comment:
 
 Definition of isNearTo() method in class Location has doubtful correctness. Eg: Edinburgh uses EH* *** to classify district, If two places are in the same area, they still might have different numerical postcode. And different country uses different system for postcode. How do you tell if their numerical postcodes are the same, then they must be near to each other.
