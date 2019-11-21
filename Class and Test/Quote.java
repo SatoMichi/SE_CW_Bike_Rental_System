@@ -27,11 +27,12 @@ public class Quote {
         this.deposite = deposite;
     }
     
+    @SuppressWarnings("unchecked")
     public List<Bike> searchBike (Condition c, BikeList bikes){
         List <Bike> results = new ArrayList<> ();
         for (Bike b: (List <Bike>)bikes.bikes.keys()) {
-            if (c.getMaxPrice() >= b.getPrice() &&
-                b.getPrice()>= c.getMinPrice() &&
+            if (c.getMaxPrice().compareTo(b.getPrice()) > 0 &&
+                b.getPrice().compareTo(c.getMinPrice()) > 0 &&
                 c.getProvider() == b.getProvider() &&
                 c.getType() == b.getType() &&
                 c.getLocation().isNearTo(b.getProvider().getAddress()) &&
