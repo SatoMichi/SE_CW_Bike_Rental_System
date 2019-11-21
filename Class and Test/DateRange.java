@@ -47,24 +47,11 @@ public class DateRange {
         if (this.equals(other)) {
             return true;
         }
-        // one range is in other range
-        else if (this.start.compareTo(other.getStart())>0
-                    && this.end.compareTo(other.getEnd())<0) {
-            return true;
+        else if (!other.getEnd().isAfter(this.end) {
+            return !this.start.isAfter(other.getEnd());
         }
-        else if (other.getStart().compareTo(other.getStart())>0
-                    && other.getEnd().compareTo(this.end)<0) {
-            return true;
-        }
-        // part of them is overlap
-        else if (other.getStart().compareTo(this.end)<0 
-                    && other.getStart().compareTo(this.start)>0) {
-            return true;
-        }
-        else if (this.start.compareTo(other.getEnd())<0
-                    && this.start.compareTo(other.getStart())>0) {
-            return true;
-        }
+        else if (!this.end.isAfter(other.getEnd()) {
+            return !other.getStart().isAfter(this.end);
         // else
         return false;
     }
