@@ -8,7 +8,13 @@ Course Work 3 for Software Engineering
   Uploaded cw1_diagram
 
 **11/21:**  
- -Uploaded Location.java, TestLocation.java, DateRange.java, TestDateRange.java, Condition.java  
-※There are several change from class diagram.
-  1. Data -> DataRange with additional methods as it is instructed in CW3.
-  2. In the Condition class, some datatype is changed. type:BikeType, price:BigDecimal, date:DateRange.
+Uploaded in "Class and Test".
+ - [x] Location.java, 
+ - [x] TestLocation.java, 
+ - [x] DateRange.java, 
+ - [x] TestDateRange.java, 
+ - [ ] Condition.java  
+
+※There are several change from class diagram.  
+ 1. Data -> DataRange with additional methods as it is instructed in CW3.
+ 2. In the Condition class, some datatype is changed. type:BikeType, price:BigDecimal, date:DateRange.
