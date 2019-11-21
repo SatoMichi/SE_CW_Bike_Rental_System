@@ -1,7 +1,7 @@
 # SE_CW3_GitHub
 Course Work 3 for Software Engineering
 
-**11/21:Min*
+**11/21:Min**
 
 simplify overlap() in class DateRange
 
