@@ -9,7 +9,7 @@ added price range in class Condition
 
 updated class diagram
 
-revert change to Bike type from BikeType back to string. Reason: you don't know how many kind of bike types there are.
+revert change of Bike type from BikeType back to string. Reason: you don't know how many kind of bike types there are.
 
 comment:
 
