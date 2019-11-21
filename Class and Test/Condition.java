@@ -2,7 +2,7 @@
 import java.math.BigDecimal;
 
 public class Condition {
-    private String type;
+    private BikeType type;
     private BigDecimal minPrice;
     private BigDecimal maxPrice;    //price range
     private Location location;
@@ -10,7 +10,7 @@ public class Condition {
     private BikeProvider provider;
     private int number;
     
-    public Condition(String type,BigDecimal minPrice,BigDecimal maxPrice,Location location,
+    public Condition(BikeType type,BigDecimal minPrice,BigDecimal maxPrice,Location location,
                     DateRange date, BikeProvider provider,int number)
     {
         this.setType(type);
@@ -21,11 +21,11 @@ public class Condition {
         this.setNumber(number);
     }
 
-    public String getType() {
+    public BikeType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(BikeType type) {
         this.type = type;
     }
 
