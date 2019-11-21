@@ -1,6 +1,33 @@
 # SE_CW3_GitHub
 Course Work 3 for Software Engineering
 
+**11/21:sato**  
+completed 
+
+class  
+ - [ ] Bike
+ - [ ] BikeType
+ - [x] DataRange
+ - [ ] Delivable
+ - [ ] DeliveryService
+ - [ ] DeliveryServiceFactory
+ - [x] Location
+ - [ ] MockDeliveryService
+ - [ ] PricingPolicy
+ - [ ] BikeProvider
+ - [ ] Customer
+ - [x] Quote
+ - [x] BikeList
+ - [ ] Booking
+ - [x] Condition
+ - [x] Invoice  
+
+test
+ - [ ] PricingTest
+ - [ ] systemTest
+ - [x] TestLocation
+ - [x] TestDateRange
+
 **11/21:Min**
 
 simplify overlap() in class DateRange
