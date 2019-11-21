@@ -34,7 +34,7 @@ public class Quote {
                 c.getProvider() == b.getProvider() &&
                 c.getType() == b.getType() &&
                 c.getLocation().isNearTo(b.getLocation()) &&
-                b.isAvailable(c.getDate())  )
+                b.isAvail(c.getDate())  )
             {
                 results.add(b);
             }
