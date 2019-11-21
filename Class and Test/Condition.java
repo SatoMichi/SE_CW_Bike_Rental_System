@@ -9,12 +9,12 @@ public class Condition {
     private DateRange date;
     private BikeProvider provider;
     private int number;
-    
+
     public Condition(BikeType type,BigDecimal minPrice,BigDecimal maxPrice,Location location,
                     DateRange date, BikeProvider provider,int number)
     {
         this.setType(type);
-        this.setPrice(price);
+        this.setPrice(minPrice, maxPrice);
         this.setLocation(location);
         this.setDate(date);
         this.setProvider(provider);
@@ -70,3 +70,4 @@ public class Condition {
         this.number = number;
     }
 }
+
