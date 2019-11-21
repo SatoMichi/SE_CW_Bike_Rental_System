@@ -30,10 +30,11 @@ public class Quote {
     public List<Bike> searchBike (Condition c, BikeList bikes){
         List <Bike> results = new ArrayList<> ();
         for (Bike b: (List <Bike>)bikes.bikes.keys()) {
-            if (c.getMaxPrice() >= b.getPrice() >= c.getMinPrice() &&
+            if (c.getMaxPrice() >= b.getPrice() &&
+                b.getPrice()>= c.getMinPrice() &&
                 c.getProvider() == b.getProvider() &&
                 c.getType() == b.getType() &&
-                c.getLocation().isNearTo(b.getLocation()) &&
+                c.getLocation().isNearTo(b.getProvider().getAddress()) &&
                 b.isAvail(c.getDate())  )
             {
                 results.add(b);
