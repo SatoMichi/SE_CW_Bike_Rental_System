@@ -57,6 +57,7 @@ public class Location {
     public String getPostcode() {
         return postcode;
     }
+    
     public String toString() {
         return postcode.toString()+"\n"+address.toString();
     }
