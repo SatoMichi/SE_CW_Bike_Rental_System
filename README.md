@@ -5,8 +5,8 @@ Course Work 3 for Software Engineering
 completed 
 
 class  
- - [ ] Bike
- - [ ] BikeType
+ - [x] Bike
+ - [x] BikeType
  - [x] DataRange
  - [ ] Delivable
  - [ ] DeliveryService
@@ -14,7 +14,7 @@ class
  - [x] Location
  - [ ] MockDeliveryService
  - [ ] PricingPolicy
- - [ ] BikeProvider
+ - [x] BikeProvider
  - [ ] Customer
  - [x] Quote
  - [x] BikeList
