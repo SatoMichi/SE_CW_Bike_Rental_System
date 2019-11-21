@@ -44,7 +44,9 @@ public class Location {
         String [] nums;
         nums = postcode.split("[A-Z]+");
         String num = "";
+        int i = 0;
         for (String n : nums) {
+            if (i++ == 2) break;
             num += n;
         }
         return Integer.parseInt(num);
