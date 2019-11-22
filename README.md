@@ -1,6 +1,12 @@
 # SE_CW3_GitHub
 Course Work 3 for Software Engineering
 
+**11/22:sato**  
+CW3 said "Do not alter the provided DeliveryService, Deliverable interfaces, or the DeliveryService-
+Factory and MockDeliveryService classes." so marked them as completed.
+
+In addition we need usecase test for each usecase in CW3.
+
 **11/21:sato**  
 completed 
 
@@ -8,11 +14,11 @@ class
  - [x] Bike
  - [x] BikeType
  - [x] DataRange
- - [ ] Delivable
- - [ ] DeliveryService
- - [ ] DeliveryServiceFactory
+ - [x] Delivable
+ - [x] DeliveryService
+ - [x] DeliveryServiceFactory
  - [x] Location
- - [ ] MockDeliveryService
+ - [x] MockDeliveryService
  - [ ] ValuationPolicy
  - [x] BikeProvider
  - [ ] Customer
