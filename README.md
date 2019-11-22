@@ -2,8 +2,8 @@
 Course Work 3 for Software Engineering
 
 **11/22:sato**  
-CW3 said "Do not alter the provided DeliveryService, Deliverable interfaces, or the DeliveryService-
-Factory and MockDeliveryService classes." so marked them as completed.
+CW3 said **"Do not alter the provided DeliveryService, Deliverable interfaces, or the DeliveryService-
+Factory and MockDeliveryService classes."** so marked them as completed.
 
 In addition we need usecase test for each usecase in CW3.
 
