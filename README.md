@@ -13,7 +13,7 @@ class
  - [ ] DeliveryServiceFactory
  - [x] Location
  - [ ] MockDeliveryService
- - [ ] PricingPolicy
+ - [ ] ValuationPolicy
  - [x] BikeProvider
  - [ ] Customer
  - [x] Quote
@@ -23,7 +23,7 @@ class
  - [x] Invoice  
 
 test
- - [ ] PricingTest
+ - [ ] ValuationPolicyTest
  - [ ] systemTest
  - [x] TestLocation
  - [x] TestDateRange
