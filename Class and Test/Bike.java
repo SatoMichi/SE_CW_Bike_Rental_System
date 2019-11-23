@@ -43,7 +43,7 @@ public class Bike {
     }
     
     public String toString() {
-        return "Bike Type: " + type.toString()     + "\n" +
+        return "Bike Type: " + type.getType()      + "\n" +
                 "Provider: " + provider.toString() + "\n" +
                 "Price: "    + price.toString()    + "\n";
     }
