@@ -47,10 +47,10 @@ public class DateRange {
         if (this.equals(other)) {
             return true;
         }
-        else if (!other.getEnd().isAfter(this.end) {
+        else if (!other.getEnd().isAfter(this.end)) {
             return !this.start.isAfter(other.getEnd());
         }
-        else if (!this.end.isAfter(other.getEnd()) {
+        else if (!this.end.isAfter(other.getEnd())) {
             return !other.getStart().isAfter(this.end);
         // else
         return false;
