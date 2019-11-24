@@ -1,7 +1,7 @@
 # SE_CW3_GitHub
 Course Work 3 for Software Engineering
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------------------------------------------------------------------------------------------------
 **11/23: Min**
 
 - changed public get/set payment card in Customer class to protected. Reason: no point in having a private attribute if any thing can access to it.
@@ -16,7 +16,7 @@ Why do we need toSring() method in Bike class? The only print function that we n
 
 Btw, if you have time, we can meet up and try to finish all the works on Tuesday after class if you have time. Reply me on vx.
 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------------------------------------------------------------------------------------------------
 **11/23:Sato**  
  - added toString() to Bike class.
  
