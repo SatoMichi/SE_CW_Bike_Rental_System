@@ -1,14 +1,18 @@
 import java.util.Hashtable;
 
 public class BikeList {
-    public Hashtable <Bike, Integer> bikes;
+    private static Hashtable <Bike, Integer> bikes = new Hashtable<Bike, Integer>();
     
-    public void increaseCount (Bike bike) {
+    public static Hashtable<Bike, Integer> getBikes() {
+        return bikes;
+    }
+    public static void increaseCount (Bike bike) {
         int n  = bikes.get(bike) + 1;
         bikes.put(bike, n);
     }
-    public void decreaseCount (Bike bike) {
+    public static void decreaseCount (Bike bike) {
         int n  = bikes.get(bike) - 1;
         bikes.put(bike, n);
     }
 }
+
