@@ -14,9 +14,9 @@ public class Customer extends Account {
         setPaymentCard(card);
     }
 
-    public int getPaymentCard() { return paymentCard; }
+    protected int getPaymentCard() { return paymentCard; }
 
-    public void setPaymentCard(int paymentCard) { this.paymentCard = paymentCard;}
+    protected void setPaymentCard(int paymentCard) { this.paymentCard = paymentCard;}
     
     public Collection<Quote> getQuote(Condition c){
        List <Quote> quotes = new ArrayList<>();
