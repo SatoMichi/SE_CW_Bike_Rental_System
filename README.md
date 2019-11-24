@@ -1,6 +1,39 @@
 # SE_CW3_GitHub
 Course Work 3 for Software Engineering
 
+**11/23:Sato**  
+ - added toString() to Bike class.
+ 
+ - change BikeList to Static (so that other class and their methods can acsses bike list without taking BikeList as argument or 
+call constructor for BikeList).
+
+ - minor change in BikeProvider class because BikeList become static (register method has no BikeList argument, some "list bike" instance is replaced by "BikeList.getBikes").
+ 
+ - changed searchBike() to static method for Quote class, and argument "Bikelist bikes" is removed because 
+ now it can directly access to BikeList. In addition, it will return List<Bike> which size is <= Condition.getNumber().
+                                                                                                                      
+ - Added partially implemented Customer class (**bookQuote method is not yet implemented**).
+ 
+**Note**  
+Since our getQuote() should return Collection<Quote>, I implemented getQuote() as:
+ ```
+ public Collection<Quote> getQuote(Condition c){
+       List <Quote> quotes = new ArrayList<>();
+       List <Bike> results = Quote.searchBike(c);
+       for (Bike b: results) {
+           quotes.add(new Quote(b,b.getPrice()));
+       }
+       return quotes;
+    }
+ ```
+However, I think this is little bit weird.  
+ 
+Personally I feel like we can remove searchBike() form Quote class and implement that process in the getQuote() in Customer class.
+And use Quote class just for Wrapper Class of Bike.  
+
+If you feel like same, we can change these part of our plan.  
+                                                                                                                      
+
 **11/22:Min**
 added Account class
 
