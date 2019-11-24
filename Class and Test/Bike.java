@@ -2,27 +2,38 @@
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Bike {
     
     private BikeType type;
-    private List<DateRange> booked;
+    private List<DateRange> booked = new ArrayList<>();
     private BigDecimal price;
     private BikeProvider provider;
+    private LocalDate regDate;
     
-    public Bike(BikeType type, boolean availability, BigDecimal price, BikeProvider provider) {
+    public Bike(BikeType type, boolean availability, BigDecimal price, BikeProvider provider, LocalDate regDate) {
         this.type = type;
         this.price = price;
         this.provider = provider;
+        this.regDate = regDate;
     }
     
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
+    public void setPrice(BigDecimal price) { this.price = price; }
     
-    public BigDecimal getPrice() {
-        return this.price;
+    public BigDecimal getPrice() { return this.price; }
+    
+    public BikeProvider getProvider() { return this.provider; }
+    
+    public BikeType getType() { return type; }
+    
+    public LocalDate getRegDate() { return this.regDate; }
+    
+    //overload
+    // if this implements ValuationPolicy, then use calculateValue(Bike bike, LocalDate date)
+    public BigDecimal calculateValue() {
+        return type.getReplacementValue();
     }
     
     public void book(DateRange range) {
@@ -34,12 +45,6 @@ public class Bike {
             if (!booked.get(i).overlaps(date)) return true;
         }
         return false;
-    }
-    
-    public BikeProvider getProvider() { return this.provider;}
-    
-    public BikeType getType() {
-        return type;
     }
     
     public String toString() {
