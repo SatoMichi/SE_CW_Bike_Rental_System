@@ -1,15 +1,21 @@
 # SE_CW3_GitHub
 Course Work 3 for Software Engineering
 
+
 **11/23: Min**
 
 - changed public get/set payment card in Customer class to protected. Reason: no point in having a private attribute if any thing can access to it.
+
+- added list of Bike Provider as we need to search the existing bike provider in our database as an condition in toCondition.
+
+- changed how toCondition() works for the Bike Provider part so that it searches through our database instead of creating a new BikeProvider class which potentially doesnt exist in our system. (May implement this in getQuotes() instead of toCondition(), pending for discussion)
 
 Why do we need toSring() method in Bike class? The only print function that we need is printOrderSummary when booking quote.
 
 **DID YOU READ MY NOTE?** Because I said the exact same thing in my note regarding searchBike().
 
 Btw, if you have time, we can meet up and try to finish all the works on Tuesday after class if you have time. Reply me on vx.
+
 
 **11/23:Sato**  
  - added toString() to Bike class.
