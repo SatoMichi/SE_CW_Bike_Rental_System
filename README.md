@@ -6,7 +6,7 @@ Course Work 3 for Software Engineering
 
 - changed public get/set payment card in Customer class to protected. Reason: no point in having a private attribute if any thing can access to it.
 
-- added list of Bike Provider as we need to search the existing bike provider in our database as an condition in toCondition.
+- added list of Bike Provider as we need to search the existing bike provider in our database as a condition in toCondition.
 
 - changed how toCondition() works for the Bike Provider part so that it searches through our database instead of creating a new BikeProvider class which potentially doesnt exist in our system. (May implement this in getQuotes() instead of toCondition(), pending for discussion)
 
