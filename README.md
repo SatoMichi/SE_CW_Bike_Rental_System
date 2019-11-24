@@ -10,7 +10,7 @@ Course Work 3 for Software Engineering
 
 - changed how toCondition() works for the Bike Provider part so that it searches through our database instead of creating a new BikeProvider class which can potentially not exist in our system. (May implement this in getQuotes() instead of toCondition(), pending discussion)
 
-Why do we need toSring() method in Bike class? The only print function that we need is printOrderSummary when booking quote.
+Why do we need toSring() method in Bike class? The only print function that we need is printOrderSummary when booking quote. (just asking)
 
 **DID YOU READ MY NOTE?** Because I said the exact same thing in my note regarding searchBike().
 
