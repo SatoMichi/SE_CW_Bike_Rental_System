@@ -7,6 +7,8 @@ Why do we need toSring() method in Bike class? The only print function that we n
 
 **DID YOU READ MY NOTE?** Because I said the exact same thing in my note regarding searchBike().
 
+Btw, if you have time, we can meet up and try to finish all the works on Tuesday after class if you have time. Reply me on vx.
+
 **11/23:Sato**  
  - added toString() to Bike class.
  
