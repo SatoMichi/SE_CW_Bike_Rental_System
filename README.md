@@ -31,7 +31,7 @@ However, I think this is little bit weird.
 Personally I feel like we can remove searchBike() form Quote class and implement that process in the getQuote() in Customer class.
 And use Quote class just for Wrapper Class of Bike.  
 
-If you feel like same, we can change these part of our plan.  
+If you feel like same, we can change these part.  
                                                                                                                       
 
 **11/22:Min**
