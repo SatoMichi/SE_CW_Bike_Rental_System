@@ -21,7 +21,7 @@ public class Quote {
     
     
     @SuppressWarnings("unchecked")
-    public static List<Bike> searchBike (Condition c, BikeList bikes){
+    public static List<Bike> searchBike (Condition c){
         List <Bike> results = new ArrayList<> ();
         for (Bike b: (List<Bike>)BikeList.getBikes().keys()) {
             if (c.getMaxPrice().compareTo(b.getPrice()) > 0 &&
@@ -40,6 +40,5 @@ public class Quote {
         }
         
         return results;
-    }
-    
+    }   
 }
