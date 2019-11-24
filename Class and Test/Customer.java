@@ -51,12 +51,12 @@ public class Customer extends Account {
         // s[7] = name of Provider
         Hashtable<BikeProvider, Integer> listofProvider = ProviderList.getProvider();
         BikeProvider provider = listofProvider
-        							.entrySet()
-        							.stream()
-        							.filter(p -> p.getKey().getName() == s[7])
-        							.findFirst()
-        							.get()
-        							.getKey(); // return first element which has the name s[7] in the list of Bike Provider
+            .entrySet()
+        	.stream()
+        	.filter(p -> p.getKey().getName() == s[7])
+        	.findFirst()
+        	.get()
+        	.getKey(); // return first element which has the name s[7] in the list of Bike Provider
         
         // s[8] = number
         int number = Integer.parseInt(s[8]);
