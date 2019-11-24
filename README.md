@@ -5,7 +5,7 @@ Course Work 3 for Software Engineering
 
 Why do we need toString() method in Bike class? The only print function that we need is printOrderSummary.
 
-**DID YOU READ MY NOTE?** Because I said the exact same thing in my note regarding searchBike().
+**Did you read my note?** Because I said the exact same thing in my note regarding searchBike().
 
 **11/23:Sato**  
  - added toString() to Bike class.
