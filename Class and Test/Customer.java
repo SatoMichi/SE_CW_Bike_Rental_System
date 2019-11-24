@@ -3,7 +3,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 
 public class Customer extends Account {
     
@@ -18,7 +20,7 @@ public class Customer extends Account {
 
     protected void setPaymentCard(int paymentCard) { this.paymentCard = paymentCard;}
     
-    public Collection<Quote> getQuote(Condition c){
+/*    public Collection<Quote> getQuote(Condition c){
        List <Quote> quotes = new ArrayList<>();
        List <Bike> results = Quote.searchBike(c);
        
@@ -27,7 +29,7 @@ public class Customer extends Account {
        }
        
        return quotes;
-    }
+    } */
 
     public Condition toCondition(String[] s) {
         // s[0] = BikeType
@@ -47,7 +49,14 @@ public class Customer extends Account {
         DateRange date = new DateRange(start,end);
         
         // s[7] = name of Provider
-        BikeProvider provider = new BikeProvider(s[7],null,0,null,null);
+        Hashtable<BikeProvider, Integer> listofProvider = ProviderList.getProvider();
+        BikeProvider provider = listofProvider
+        							.entrySet()
+        							.stream()
+        							.filter(p -> p.getKey().getName() == s[7])
+        							.findFirst()
+        							.get()
+        							.getKey(); // return first element which has the name s[7] in the list of Bike Provider
         
         // s[8] = number
         int number = Integer.parseInt(s[8]);
