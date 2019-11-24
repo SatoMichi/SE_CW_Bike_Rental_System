@@ -12,7 +12,7 @@ Course Work 3 for Software Engineering
 
 Why do we need toSring() method in Bike class? The only print function that we need is printOrderSummary when booking quote. (just asking)
 
-**DID YOU READ MY NOTE?** Because I said the exact same thing in my note regarding searchBike().
+**DID YOU READ MY PREVIOUS NOTE?** Because I said the exact same thing in my note regarding searchBike().
 
 Btw, if you have time, we can meet up and try to finish all the works on Tuesday after class. Reply me on vx.
 
