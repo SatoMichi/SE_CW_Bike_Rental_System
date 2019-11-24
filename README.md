@@ -3,6 +3,8 @@ Course Work 3 for Software Engineering
 
 **11/23: Min**
 
+- changed public get/set payment card in Customer class to protected. Reason: no point in having a private attribute if any thing can access to it.
+
 Why do we need toSring() method in Bike class? The only print function that we need is printOrderSummary when booking quote.
 
 **DID YOU READ MY NOTE?** Because I said the exact same thing in my note regarding searchBike().
