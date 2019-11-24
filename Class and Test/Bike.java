@@ -13,7 +13,7 @@ public class Bike {
     private BikeProvider provider;
     private LocalDate regDate;
     
-    public Bike(BikeType type, boolean availability, BigDecimal price, BikeProvider provider, LocalDate regDate) {
+    public Bike(BikeType type, BigDecimal price, BikeProvider provider, LocalDate regDate) {
         this.type = type;
         this.price = price;
         this.provider = provider;
