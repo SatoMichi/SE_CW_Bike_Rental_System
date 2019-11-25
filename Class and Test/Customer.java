@@ -20,16 +20,38 @@ public class Customer extends Account {
 
     protected void setPaymentCard(int paymentCard) { this.paymentCard = paymentCard;}
     
-/*    public Collection<Quote> getQuote(Condition c){
+    public Collection<Quote> getQuote(Condition c){
        List <Quote> quotes = new ArrayList<>();
-       List <Bike> results = Quote.searchBike(c);
+       List <Bike> results = searchBike(c);
        
        for (Bike b: results) {
-           quotes.add(new Quote(b,b.getPrice()));
+           quotes.add(new Quote(b));
        }
        
        return quotes;
-    } */
+    } 
+    
+    @SuppressWarnings("unchecked")
+    private List<Bike> searchBike (Condition c){
+        List <Bike> results = new ArrayList<> ();
+        for (Bike b: (List<Bike>)BikeList.getBikes().keys()) {
+            if (c.getMaxPrice().compareTo(b.getPrice()) > 0 &&
+                b.getPrice().compareTo(c.getMinPrice()) > 0 &&
+                c.getProvider().getName() == b.getProvider().getName() &&
+                c.getType().getType() == b.getType().getType() &&
+                c.getLocation().isNearTo(b.getProvider().getAddress()) &&
+                b.isAvail(c.getDate()) )
+            {
+                results.add(b);
+            }
+        }
+        
+        if (results.size() > c.getNumber()) {
+            return results.subList(0, c.getNumber());
+        }
+        
+        return results;
+    } 
 
     public Condition toCondition(String[] s) {
         // s[0] = BikeType
@@ -64,8 +86,13 @@ public class Customer extends Account {
     }
     
     public boolean bookQuote(Collection<Quote> quotes) {
-        // not yet implemented
-        return false;
+        Booking booking = new Booking(quotes, this);
+        // constructor notify Customer and Provider
+        String invoice = booking.printOrder();
+        if (invoice == null) {
+            return false;
+        }
+        return true;
     }
     
     public String getStatus(Bike bike) {
