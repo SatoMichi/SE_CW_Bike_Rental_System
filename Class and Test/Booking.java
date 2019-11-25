@@ -25,6 +25,7 @@ public class Booking {
 	
 	private void display(String s) {
 	     // not implementing this method because this is the process out side the system (I/O)
+		System.out.printf("%s\n", s);
 	    }
 	    
 	private void notifyCustomer() {
