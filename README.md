@@ -118,12 +118,12 @@ class
  - [x] DeliveryServiceFactory
  - [x] Location
  - [x] MockDeliveryService
- - [ ] ValuationPolicy
+ - [x] ValuationPolicy
  - [x] BikeProvider
- - [ ] Customer
+ - [x] Customer
  - [x] Quote
  - [x] BikeList
- - [ ] Booking
+ - [x] Booking
  - [x] Condition
  - [x] Invoice  
 
