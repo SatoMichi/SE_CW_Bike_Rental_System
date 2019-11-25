@@ -32,9 +32,7 @@ public class Booking {
 	}
 	    
 	private void notifyProvider() {
-	    for (Quote q: quotes) {
-	        emailToProvider(q.getBike().getProvider());
-	    }
+            // not implementing this method because this is the process out side the system.
 	}
 	    	    
 	private void emailToProvider(BikeProvider p) {
