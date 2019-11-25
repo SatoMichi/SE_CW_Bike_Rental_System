@@ -9,7 +9,7 @@ Course Work 3 for Software Engineering
  - Booking class has an Invoice attribute which will be generated each time Booking object has been created.
 
 **Note**
-Our cw2 class diagram isn't that good, or in another word, wrong. Don't create class/method based on it, just treat it as a reference when making class/method.
+Our cw2 class diagram isn't that good, or in another word, wrong. Don't create class/method based on it, just treat it as a reference when making class/method. We will need to modify it later on.
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 **11/25: sato**  
