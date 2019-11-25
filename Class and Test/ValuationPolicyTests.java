@@ -39,16 +39,17 @@ public class ValuationPolicyTests {
     public void testLD() {
         BigDecimal value = ld.calculateValue(bike, now);
         BigDecimal calc = new BigDecimal(900).subtract(new BigDecimal(3*0.1*900));
-        System.out.println(value.stripTrailingZeros());
-        System.out.println(calc.stripTrailingZeros());
-        Assertions.assertEquals(value.stripTrailingZeros(), calc.stripTrailingZeros());
+        //System.out.println(value.setScale(5,BigDecimal.ROUND_HALF_UP));
+        //System.out.println(calc.setScale(5,BigDecimal.ROUND_HALF_UP));
+        Assertions.assertEquals(value.setScale(5,BigDecimal.ROUND_HALF_UP), calc.setScale(5,BigDecimal.ROUND_HALF_UP));
     }
     @Test
     public void testDDBD() {
         BigDecimal value = ddbd.calculateValue(bike, now);
-        BigDecimal calc = ddbd.calculateValue(bike, now);
-        System.out.println(value.toString());
-        System.out.println(calc.toString());
-        Assertions.assertEquals(value1.stripTrailingZeros(), value2.stripTrailingZeros());
+        BigDecimal origin = new BigDecimal(900);
+        BigDecimal calc = origin.multiply(BigDecimal.ONE.subtract(new BigDecimal(2*0.1)).pow(3));
+        //System.out.println(value.stripTrailingZeros());
+        //System.out.println(calc.stripTrailingZeros());
+        Assertions.assertEquals(value.stripTrailingZeros(), calc.stripTrailingZeros());
     }
 }
