@@ -7,6 +7,7 @@ Course Work 3 for Software Engineering
  - Added a toString() method in Invoice class for printSummary() in Booking class.
  - Renamed printSummary() to printOrder()
  - Booking class has an Invoice attribute which will be generated each time Booking object has been created.
+ - Slightly modified toString() in Bike class so for the purpose of printOrder() ("\n" has been changed to ", ").
 
 **Note**
 Our cw2 class diagram isn't that good, or in another word, wrong. Don't create class/method based on it, just treat it as a reference when making class/method. We will need to modify it later on.
