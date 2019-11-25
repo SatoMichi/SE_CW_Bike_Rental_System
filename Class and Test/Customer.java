@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Hashtable;
 import java.util.List;
-import java.util.Map;
+
 
 public class Customer extends Account {
     
@@ -26,7 +26,7 @@ public class Customer extends Account {
         List <Bike> results = searchBike(c);
        
         for (Bike b: results) {
-            quotes.add(new Quote(b), b.getProvider().getDepositPolicy());
+            quotes.add(new Quote(b, b.getProvider().getDepositPolicy()));
         }
        
         return quotes;
@@ -85,7 +85,7 @@ public class Customer extends Account {
         
         return new Condition(type,minPrice,maxPrice,location, date, provider, number);
     }
-    
+    // DateRange is inputed.
     public Booking bookQuote(Collection<Quote> quotes, boolean d, DateRange date) {
         Booking booking = new Booking(quotes, this, date, d);
         // constructor notify Customer and Provider

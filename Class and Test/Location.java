@@ -41,13 +41,14 @@ public class Location {
     }
     
     private int extractNums(String postcode) {
-        String [] nums;
-        nums = postcode.split("[A-Z]+");
         String num = "";
         int i = 0;
-        for (String n : nums) {
-        	if (++i == 2) break;
-            num += n;
+        for (char n : postcode.toCharArray()) {
+        	if (Character.isDigit(n)) {
+        	    i++;
+        	    num += n;
+        	}
+        	if (i == 2) break;
         }
         return Integer.parseInt(num);
     }

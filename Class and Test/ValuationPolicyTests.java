@@ -16,12 +16,12 @@ public class ValuationPolicyTests {
     void setUp() throws Exception {
         
         // set LinearDepreciation
-        ld = new LinearDepreciation(new BigDecimal(0.1));
+        ld = new LinearDepreciation();
         // set DoubleDecliningBalanceDepreciation
-        ddbd = new DoubleDecliningBalanceDepreciation(new BigDecimal(0.1));
+        ddbd = new DoubleDecliningBalanceDepreciation();
         // set bike
         BikeType type = new BikeType("MTB", new BigDecimal(900));
-        BikeProvider provider = new BikeProvider("", "", 0, null, "");
+        BikeProvider provider = new BikeProvider("", "", 0, null, "",0.1);
         bike = new Bike(type, new BigDecimal(20), provider, LocalDate.of(2016, 06, 01));
        // set now
         now = LocalDate.of(2019,12,31);

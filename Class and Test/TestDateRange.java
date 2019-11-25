@@ -54,6 +54,6 @@ class TestDateRange {
     @Test
     void testPrint() {
         //System.out.println(dateRange1.toString());
-        assert(dateRange1.toString().equals("2019-01-07 ~ 2019-01-10"));
+        assert(dateRange1.toString().equals("2019-01-07 - 2019-01-10"));
     }
 }
