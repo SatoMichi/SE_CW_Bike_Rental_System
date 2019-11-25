@@ -1,5 +1,13 @@
 # SE_CW3_GitHub
 Course Work 3 for Software Engineering
+**11/25: sato**  
+ - Cahged Invoice calss so that it can deal with more than one bike booked.
+ - Implemented Booking class. changed notifyProvider. notifyProvider() will not take argument. It will use the List<Quote> stored inside the Booking class to notify all the provider.
+ - Also changed printSummary(). It takes only Customer as argument, and generate Invoice, print it on display and send email to customer.
+ 
+**Note**  
+In the implementation of printSummary(), I am littel confused by calculating of  Price on Invoice. Should it be sum of Quote.deposite or sum of Bike.price?
+
 ----------------------------------------------------------------------------------------------------------------------------------------
 **11/25: sato**  
  - Added LinearDepreciation and DoubleDecliningBalanceDepreciation which implements ValuationPolicy.
