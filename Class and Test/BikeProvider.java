@@ -19,6 +19,19 @@ public class BikeProvider extends Account {
         return false;
     }
     
+    // If only orderNumber is provided, then we have to implement 
+    // some method which takes orderNumber and return Bike.  
+    public void returnBike(int orderNumber, Bike bike) {
+        // not yet implemented 
+    }
+    
+    public void returnBikePartner(int orderNumber, Bike bike) {
+        if (partners.contains(bike.getProvider())) {
+            returnBike(orderNumber, bike);
+            // process for delivering bike to original provider.
+        }
+    }
+    
     public void register(Bike b, int count) {
         BikeList.getBikes().put(b, count);
     }
