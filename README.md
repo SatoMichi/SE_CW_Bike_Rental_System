@@ -1,7 +1,7 @@
 # SE_CW3_GitHub
 Course Work 3 for Software Engineering  
-----------------------------------------------------------------------------------------------------------------------------------------
 
+----------------------------------------------------------------------------------------------------------------------------------------
 **11/25: Min**
  - Created OrderNumber class to make sure that we can generate different order number each time.
  - Added a toString() method in Invoice class for printSummary() in Booking class.
