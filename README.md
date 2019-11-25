@@ -15,7 +15,9 @@ Our cw2 class diagram isn't that good, or in another word, wrong. Don't create c
 
 To search for old booking, we need a list of booking but that doesn't have any connection with any use case that we need to implement. Therefore, I leave it unimplemented.
 
-Btw, don't put everything as public/private, make use of protected
+Btw, don't put everything as public/private, make use of protected.
+
+Price shown on Invoice should be the sum of what customer paid excluding deposit.
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 **11/25: sato**  
