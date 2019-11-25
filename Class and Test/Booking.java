@@ -13,7 +13,7 @@ public class Booking {
 		this.quotes = q;
 		this.invoice = new Invoice(this.quotes, this.customer);
 		notifyProvider();
-		emailToCustomer();
+		notifyCustomer();
 	}
 	
 	public int getOrderNumber() { return this.orderNumber;}
@@ -27,15 +27,11 @@ public class Booking {
 	     // not implementing this method because this is the process out side the system (I/O)
 	    }
 	    
-	private void emailToCustomer() {
+	private void notifyCustomer() {
 	     // not implementing this method because this is the process out side the system.
 	}
 	    
 	private void notifyProvider() {
             // not implementing this method because this is the process out side the system.
-	}
-	    	    
-	private void emailToProvider(BikeProvider p) {
-	    // not implementing this method because this is the process out side the system.
 	}
 }
