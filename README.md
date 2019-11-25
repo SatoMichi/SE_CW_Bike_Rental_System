@@ -6,7 +6,7 @@ Course Work 3 for Software Engineering
  - Added ValuationPolicyTest (they suggested to use "assertEquals(a.stripTrailingZeros(), b.stripTrailingZeros());" however for 
  first test (testLD) I just used round up for 5 because I cannot write pass test).
  - Added attribute LocalDate:regDate to Bike class because Valuation policy need it. In addition, added calculateValue() as overload of 
- calculateValue(Bike,LocalDate), since CW3 said the system have to work evne without Valuation policy.
+ calculateValue(Bike,LocalDate), since CW3 said the system have to work even without Valuation policy.
  
  **Note**  
  Sorry. Actually I was not really sure about what you said in Previous Note. We can disscuss implementation of getQuote() later.
