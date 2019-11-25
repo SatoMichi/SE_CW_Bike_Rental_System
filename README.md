@@ -9,9 +9,12 @@ Course Work 3 for Software Engineering
  calculateValue(Bike,LocalDate), since CW3 said the system have to work evne without Valuation policy.
  
  **Note**  
- Sorry. Actually I was not really sure about what you said in Previous Note.
+ Sorry. Actually I was not really sure about what you said in Previous Note. We can disscuss implementation of getQuote() later.
  
  About your qustion about toString() in Bike, because I used bike.toString() in some class, so I need to implement it.
+ 
+ And I agree with the idea of having List of Provider, since it is useful to store data and we donot have to construct 
+ BikeProvider class every time.
  
 ----------------------------------------------------------------------------------------------------------------------------------------
 **11/23: Min**
