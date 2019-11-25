@@ -1,6 +1,17 @@
 # SE_CW3_GitHub
 Course Work 3 for Software Engineering  
 ----------------------------------------------------------------------------------------------------------------------------------------
+
+**11/25: Min**
+ - Created OrderNumber class to make sure that we can generate different order number each time.
+ - Added a toString() method in Invoice class for printSummary() in Booking class.
+ - Renamed printSummary() to printOrder()
+ - Booking class has an Invoice attribute which will be generated each time Booking object has been created.
+
+**Note**
+Our cw2 class diagram isn't that good, or in another word, wrong. Don't create class/method based on it, just treat it as a reference when making class/method.
+
+----------------------------------------------------------------------------------------------------------------------------------------
 **11/25: sato**  
  - Cahged Invoice calss so that it can deal with more than one bike booked.
  - Implemented Booking class. changed notifyProvider. notifyProvider() will not take argument. It will use the List<Quote> stored inside the Booking class to notify all the provider.
