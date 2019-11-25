@@ -12,13 +12,14 @@ public class Booking {
 		this.customer = c;
 		this.quotes = q;
 		this.invoice = new Invoice(this.quotes, this.customer);
+		notifyProvider();
+		emailToCustomer();
 	}
 	
 	public int getOrderNumber() { return this.orderNumber;}
 	
 	protected String printOrder() {
 		display(this.invoice.toString());
-		emailToCustomer();
 		return this.invoice.toString();
 	}
 	
@@ -30,7 +31,7 @@ public class Booking {
 	     // not implementing this method because this is the process out side the system.
 	}
 	    
-	public void notifyProvider() {
+	private void notifyProvider() {
 	    for (Quote q: quotes) {
 	        emailToProvider(q.getBike().getProvider());
 	    }
