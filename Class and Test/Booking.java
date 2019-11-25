@@ -6,16 +6,23 @@ public class Booking {
 	private Collection<Quote> quotes;
 	private Customer customer;
 	private Invoice invoice;
+	private DateRange date;
+	private boolean delivery;
 	
-	public Booking(Collection<Quote> q, Customer c) {
+	public Booking(Collection<Quote> q, Customer c, DateRange d, boolean delivery) {
 		orderNumber = OrderNumber.generate();
 		this.customer = c;
 		this.quotes = q;
-		this.invoice = new Invoice(this.quotes, this.customer);
-		notifyProvider();
+		this.date = d;
+		this.delivery = delivery;
+		this.invoice = new Invoice(this.orderNumber, this.quotes, this.customer, this.date);
 		notifyCustomer();
+		notifyProvider();
+		ListofBooking.bookings.add(this);
 	}
 	
+	public DateRange getDate() { return this.date;}
+	public Collection<Quote> getbookedQuotes() { return this.quotes;}
 	public int getOrderNumber() { return this.orderNumber;}
 	
 	protected String printOrder() {
@@ -25,14 +32,13 @@ public class Booking {
 	
 	private void display(String s) {
 	     // not implementing this method because this is the process out side the system (I/O)
-		System.out.printf("%s\n", s);
 	    }
 	    
 	private void notifyCustomer() {
 	     // not implementing this method because this is the process out side the system.
 	}
 	    
-	private void notifyProvider() {
-            // not implementing this method because this is the process out side the system.
+	public void notifyProvider() {
+		// not implementing this method because this is the process out side the system.
 	}
 }

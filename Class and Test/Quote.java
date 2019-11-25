@@ -1,22 +1,47 @@
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDate;
 
 public class Quote {
     private Bike bike;
-    private BigDecimal deposite;
+    private BigDecimal deposit;
     
-    public Quote(Bike bike, BigDecimal deposite) {
+    public Quote(Bike bike) {
         this.setBike(bike);
-        this.setDeposite(deposite);
+        setDeposit("");
+    }
+    
+    public Quote(Bike bike, String n) {
+    	this.setBike(bike);
+    	setDeposit(n);
+    }
+    
+    private void setDeposit(String n) {
+    	switch (n) {
+    		case "LinearDepreciation":
+    			this.deposit = new LinearDepreciation().calculateValue(this.bike, LocalDate.now());
+    			break;
+    		case "DoubleDecliningBalanceDepreciation":
+    			this.deposit = new DoubleDecliningBalanceDepreciation().calculateValue(this.bike, LocalDate.now());
+    			break;
+    		default:
+    			this.deposit = bike.getProvider().getRate().multiply(bike.getType().getReplacementValue());
+    	}
+    }
+    
+    public Bike getBike() {
+        return bike;
     }
 
-    public Bike getBike() { return bike; }
+    public void setBike(Bike bike) {
+        this.bike = bike;
+    }
 
-    public void setBike(Bike bike) { this.bike = bike; }
+    public BigDecimal getDeposit() {
+        return deposit;
+    }
 
-    public BigDecimal getDeposite() { return deposite; }
-
-    public void setDeposite(BigDecimal deposite) { this.deposite = deposite; }
-      
+    public void setDeposit(BigDecimal deposite) {
+        this.deposit = deposite;
+    }
+    
 }

@@ -46,7 +46,7 @@ public class Location {
         String num = "";
         int i = 0;
         for (String n : nums) {
-            if (i++ == 2) break;
+        	if (++i == 2) break;
             num += n;
         }
         return Integer.parseInt(num);
@@ -56,11 +56,11 @@ public class Location {
         return address;
     }
     
-    public String getPostcode() {
-        return postcode;
+    public String toString() {
+    	return this.getAddress() + " " + this.getPostcode();
     }
     
-    public String toString() {
-        return postcode.toString()+"\n"+address.toString();
+    public String getPostcode() {
+        return postcode;
     }
 }

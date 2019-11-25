@@ -20,15 +20,16 @@ public class Customer extends Account {
 
     protected void setPaymentCard(int paymentCard) { this.paymentCard = paymentCard;}
     
-    public Collection<Quote> getQuote(Condition c){
-       List <Quote> quotes = new ArrayList<>();
-       List <Bike> results = searchBike(c);
+    public Collection<Quote> getQuote(String[] s){
+        Condition c = toCondition(s);
+        List <Quote> quotes = new ArrayList<>();
+        List <Bike> results = searchBike(c);
        
-       for (Bike b: results) {
-           quotes.add(new Quote(b));
-       }
+        for (Bike b: results) {
+            quotes.add(new Quote(b), b.getProvider().getDepositPolicy());
+        }
        
-       return quotes;
+        return quotes;
     } 
     
     @SuppressWarnings("unchecked")
@@ -53,7 +54,7 @@ public class Customer extends Account {
         return results;
     } 
 
-    public Condition toCondition(String[] s) {
+    public static Condition toCondition(String[] s) {
         // s[0] = BikeType
         BikeType type = new BikeType(s[0], null);
         
@@ -85,14 +86,24 @@ public class Customer extends Account {
         return new Condition(type,minPrice,maxPrice,location, date, provider, number);
     }
     
-    public boolean bookQuote(Collection<Quote> quotes) {
-        Booking booking = new Booking(quotes, this);
+    public Booking bookQuote(Collection<Quote> quotes, boolean d, DateRange date) {
+        Booking booking = new Booking(quotes, this, date, d);
         // constructor notify Customer and Provider
         String invoice = booking.printOrder();
-        if (invoice == null) {
-            return false;
+        DeliveryServiceFactory.setupMockDeliveryService();
+        DeliveryService delivery = DeliveryServiceFactory.getDeliveryService();
+        if (d) {
+            for (Quote q : quotes) {
+            	Bike b = q.getBike();
+            	BikeProvider p = b.getProvider();
+            	delivery.scheduleDelivery(b, 
+            			p.getAddress(), 
+            			this.getAddress(),
+            			date.getEnd());
+            }
         }
-        return true;
+        System.out.printf("%s\n", invoice);
+        return booking;
     }
     
     public String getStatus(Bike bike) {

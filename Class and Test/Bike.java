@@ -5,13 +5,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Bike {
+public class Bike implements Deliverable {
     
     private BikeType type;
     private List<DateRange> booked = new ArrayList<>();
     private BigDecimal price;
     private BikeProvider provider;
-    private LocalDate regDate;
+    private final LocalDate regDate;
+    private boolean availability;
     
     public Bike(BikeType type, BigDecimal price, BikeProvider provider, LocalDate regDate) {
         this.type = type;
@@ -19,7 +20,7 @@ public class Bike {
         this.provider = provider;
         this.regDate = regDate;
     }
-    
+    public boolean getAvailability() { return this.availability;}
     public void setPrice(BigDecimal price) { this.price = price; }
     
     public BigDecimal getPrice() { return this.price; }
@@ -33,7 +34,7 @@ public class Bike {
     //overload
     // if this implements ValuationPolicy, then use calculateValue(Bike bike, LocalDate date)
     public BigDecimal calculateValue() {
-        return type.getReplacementValue().multiply(new BigDecimal(provider.getRate());
+        return this.type.getReplacementValue().multiply(this.provider.getRate());
     }
     
     public void book(DateRange range) {
@@ -42,7 +43,7 @@ public class Bike {
     
     public boolean isAvail(DateRange date) {
         for (int i = 0; i < booked.size(); i++) {
-            if (!booked.get(i).overlaps(date)) return true;
+            if (!booked.get(i).overlaps(date)) return true && this.availability;
         }
         return false;
     }
@@ -52,4 +53,12 @@ public class Bike {
                 "Provider: " + provider.toString() + "\n" +
                 "Price: "    + price.toString()    + "\n";
     }
+	@Override
+	public void onPickup() {
+		availability = true;
+	}
+	@Override
+	public void onDropoff() {
+		availability = false;
+	}
 }

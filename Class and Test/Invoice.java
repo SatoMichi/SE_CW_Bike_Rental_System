@@ -9,10 +9,11 @@ public class Invoice {
 	private DateRange date;
 	private Location address;
 	
-	public Invoice(Collection<Quote> q, Customer c) {
-		this.orderNo = OrderNumber.generate();
+	public Invoice(int n, Collection<Quote> q, Customer c, DateRange d) {
+		this.orderNo = n;
 		this.quotes = q;
 		this.customer = c;
+		this.date = d;
 	}
 	
 	private String getBikesInfo() {

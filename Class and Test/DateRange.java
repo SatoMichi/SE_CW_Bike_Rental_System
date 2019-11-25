@@ -52,6 +52,7 @@ public class DateRange {
         }
         else if (!this.end.isAfter(other.getEnd())) {
             return !other.getStart().isAfter(this.end);
+        }
         // else
         return false;
     }
@@ -76,6 +77,6 @@ public class DateRange {
     }
     
     public String toString() {
-        return this.start.toString() + " ~ " + this.end.toString();
+        return this.start.toString() + " - " + this.end.toString();
     }
 }

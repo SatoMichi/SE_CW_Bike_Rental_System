@@ -9,7 +9,7 @@ public class Condition {
     private DateRange date;
     private BikeProvider provider;
     private int number;
-
+    
     public Condition(BikeType type,BigDecimal minPrice,BigDecimal maxPrice,Location location,
                     DateRange date, BikeProvider provider,int number)
     {
