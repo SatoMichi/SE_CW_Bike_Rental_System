@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import java.util.Collection;
 
 public class Invoice {
@@ -26,14 +27,23 @@ public class Invoice {
 		return ans;
 	}
 	
+	private BigDecimal getTotalPrice() {
+		BigDecimal price = new BigDecimal(0);
+		for (Quote q : quotes) {
+			price.add(q.getBike().getPrice());
+		}
+		return price;
+	}
+	
 	public String toString() {
 		String ans = "";
-		ans += String.format("Order Number: %d \nBike(s) booked: %sDate booked: %s \nAddress: %s \nCustomer: %s", 
+		ans += String.format("Order Number: %d \nBike(s) booked: %sDate booked: %s \nAddress: %s \nCustomer: %s \nTotal price: %s \n", 
 				orderNo,
 				this.getBikesInfo(),
 				date.toString(),
 				address.toString(),
-				customer.getName());
+				customer.getName(),
+				getTotalPrice().toString());
 		
 		return ans;
 	}
