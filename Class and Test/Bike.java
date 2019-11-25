@@ -33,7 +33,7 @@ public class Bike {
     //overload
     // if this implements ValuationPolicy, then use calculateValue(Bike bike, LocalDate date)
     public BigDecimal calculateValue() {
-        return type.getReplacementValue();
+        return type.getReplacementValue().multiply(new BigDecimal(provider.getRate());
     }
     
     public void book(DateRange range) {
