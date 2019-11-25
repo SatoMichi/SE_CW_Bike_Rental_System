@@ -9,7 +9,7 @@ public class BikeProvider extends Account {
 	private BigDecimal depositRate;
 	private String depositPolicy;
 	
-	public BikeProvider(String name, String email, int phone, Location address, String openingHours, int d) {
+	public BikeProvider(String name, String email, int phone, Location address, String openingHours, double d) {
 		super(name, address, phone, email);
 		this.depositRate = new BigDecimal(d);
 		this.openingHours = openingHours;
