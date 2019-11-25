@@ -1,32 +1,40 @@
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.List;
+import java.util.Collection;
 
 public class Invoice {
-    
-    private List <Bike> bikes;
-    private BigDecimal price;
-    private LocalDate date;
-    private Customer customer;
-    private int ordernumber;
-    
-    public Invoice(List<Bike> bikes, BigDecimal price, LocalDate date, Customer customer, int ordernumber) {
-        this.bikes = bikes;
-        this.price = price;
-        this.date = date;
-        this.customer = customer;
-        this.ordernumber = ordernumber;
-    }
-    
-    public String toString() {
-        String bikesInfo = "";
-        for (Bike b: bikes) {
-            bikesInfo += b.toString();
-        }
-        return ("OrderNumber: " + ordernumber + 
-                "\nDate: " + date +
-                "\nCustomer Name: " + customer.toString() +
-                "\nBikes booked is " + bikesInfo +
-                "\nPrice is " + price.toString() + "\n");
-    }
+	
+	private final int orderNo;
+	private Collection<Quote> quotes;
+	private Customer customer;
+	private DateRange date;
+	private Location address;
+	
+	public Invoice(Collection<Quote> q, Customer c) {
+		this.orderNo = OrderNumber.generate();
+		this.quotes = q;
+		this.customer = c;
+	}
+	
+	private String getBikesInfo() {
+		String ans = "";
+		int count = 1;
+		for (Quote q : quotes) {
+			ans += String.format("%d: ", count);
+			ans += q.getBike().toString();
+			ans += "\n";
+			count++;
+		}
+		return ans;
+	}
+	
+	public String toString() {
+		String ans = "";
+		ans += String.format("Order Number: %d \nBike(s) booked: %sDate booked: %s \nAddress: %s \nCustomer: %s", 
+				orderNo,
+				this.getBikesInfo(),
+				date.toString(),
+				address.toString(),
+				customer.getName());
+		
+		return ans;
+	}
 }
