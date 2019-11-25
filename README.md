@@ -1,5 +1,6 @@
 # SE_CW3_GitHub
-Course Work 3 for Software Engineering
+Course Work 3 for Software Engineering  
+----------------------------------------------------------------------------------------------------------------------------------------
 **11/25: sato**  
  - Cahged Invoice calss so that it can deal with more than one bike booked.
  - Implemented Booking class. changed notifyProvider. notifyProvider() will not take argument. It will use the List<Quote> stored inside the Booking class to notify all the provider.
