@@ -147,7 +147,7 @@ Uploaded in "Class and Test".
  - [x] TestLocation.java, 
  - [x] DateRange.java, 
  - [x] TestDateRange.java, 
- - [ ] Condition.java  
+ - [x] Condition.java  
 
 ※There are several change from class diagram.  
  1. Data -> DataRange with additional methods as it is instructed in CW3.
