@@ -10,6 +10,7 @@ Course Work 3 for Software Engineering
  - Slightly modified toString() in Bike class so for the purpose of printOrder() ("\n" has been changed to ", ").
 
 **Note**
+
 Our cw2 class diagram isn't that good, or in another word, wrong. Don't create class/method based on it, just treat it as a reference when making class/method. We will need to modify it later on.
 
 ----------------------------------------------------------------------------------------------------------------------------------------
