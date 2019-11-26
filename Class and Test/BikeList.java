@@ -1,9 +1,7 @@
 import java.util.Hashtable;
 
 public class BikeList {
-    private static Hashtable <Bike, Integer> bikes = new Hashtable<Bike, Integer>();
-    
-    public static Hashtable<Bike, Integer> getBikes() { return bikes;}
+    protected static Hashtable <Bike, Integer> bikes = new Hashtable<Bike, Integer>();
     
     public void increaseCount (Bike bike) {
         int n  = bikes.get(bike) + 1;
