@@ -92,14 +92,15 @@ public class Customer extends Account {
         String invoice = booking.printOrder();
         DeliveryServiceFactory.setupMockDeliveryService();
         DeliveryService delivery = DeliveryServiceFactory.getDeliveryService();
-        if (d) {
-            for (Quote q : quotes) {
-            	Bike b = q.getBike();
-            	BikeProvider p = b.getProvider();
-            	delivery.scheduleDelivery(b, 
-            			p.getAddress(), 
-            			this.getAddress(),
-            			date.getEnd());
+        for (Quote q : quotes) {
+            Bike b = q.getBike();
+            BikeProvider p = b.getProvider();
+            b.book(date);
+            if (d) {
+                delivery.scheduleDelivery(b, 
+                        p.getAddress(), 
+                        this.getAddress(),
+                        date.getEnd());
             }
         }
         System.out.printf("%s\n", invoice);
@@ -111,3 +112,4 @@ public class Customer extends Account {
     }
 
 }
+
