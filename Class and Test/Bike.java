@@ -21,6 +21,7 @@ public class Bike implements Deliverable {
         this.regDate = regDate;
     }
     public boolean getAvailability() { return this.availability;}
+    
     public void setPrice(BigDecimal price) { this.price = price; }
     
     public BigDecimal getPrice() { return this.price; }
@@ -50,7 +51,7 @@ public class Bike implements Deliverable {
     
     public String toString() {
         return "Bike Type: " + type.getType()      + "\n" +
-                "Provider: " + provider.toString() + "\n" +
+                "Provider: " + provider.getName() + "\n" +
                 "Price: "    + price.toString()    + "\n";
     }
 	@Override
