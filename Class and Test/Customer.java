@@ -89,6 +89,7 @@ public class Customer extends Account {
     public Booking bookQuote(Collection<Quote> quotes, boolean d, DateRange date) {
         Booking booking = new Booking(quotes, this, date, d);
         // constructor notify Customer and Provider
+        // if customer chooses to have bike delivered, d will be set to true
         String invoice = booking.printOrder();
         DeliveryServiceFactory.setupMockDeliveryService();
         DeliveryService delivery = DeliveryServiceFactory.getDeliveryService();
