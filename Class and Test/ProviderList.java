@@ -1,7 +1,7 @@
 import java.util.Hashtable;
 
 public class ProviderList {
-	private static Hashtable <BikeProvider, Integer> providers;
+	private static Hashtable <BikeProvider, Integer> providers = new Hashtable<>();
 	
 	protected static Hashtable<BikeProvider,Integer> getProvider() {
 		return providers;
