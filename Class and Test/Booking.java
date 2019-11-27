@@ -16,9 +16,7 @@ public class Booking {
 		this.date = d;
 		this.delivery =delivery;
 		this.invoice = new Invoice(this.orderNumber, this.quotes, this.customer, this.date);
-		notifyCustomer();
-		notifyProvider();
-		ListofBooking.bookings.add(this);
+		setupBooking();
 	}
 	
 	public int getOrderNumber() { return this.orderNumber;}
@@ -29,6 +27,23 @@ public class Booking {
 	protected String printOrder() {
 		display(this.invoice.toString());
 		return this.invoice.toString();
+	}
+	
+	private void setupBooking() {
+		DeliveryServiceFactory.setupMockDeliveryService();
+        DeliveryService delivery = DeliveryServiceFactory.getDeliveryService();
+        notifyCustomer();
+		notifyProvider();
+		ListofBooking.bookings.add(this);
+        for (Quote q : quotes) {
+            Bike b = q.getBike();
+            BikeProvider p = b.getProvider();
+            b.book(date);
+            
+            if (this.delivery) {
+                delivery.scheduleDelivery(b, p.getAddress(), this.customer.getAddress(), date.getEnd());
+            }
+        }
 	}
 	
 	private void display(String s) {
