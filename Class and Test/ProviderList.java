@@ -1,9 +1,10 @@
-import java.util.Hashtable;
+import java.util.List;
+import java.util.ArrayList;
 
 public class ProviderList {
-	private static Hashtable <BikeProvider, Integer> providers = new Hashtable<>();
+	private static List<BikeProvider> providers = new ArrayList<BikeProvider>();
 	
-	protected static Hashtable<BikeProvider,Integer> getProvider() {
+	protected static List<BikeProvider> getProvider() {
 		return providers;
 	}
     
