@@ -21,7 +21,7 @@ public class BikeProvider extends Account {
 	public String getHours() { return this.openingHours;}
 	
 	public String getDepositPolicy() { return this.depositPolicy;}
-    public void setDepositPolicy(String x) { this.depositPolicy = x;}
+        public void setDepositPolicy(String x) { this.depositPolicy = x;}
 	
 	public boolean isPartner(BikeProvider p) {
 		for (BikeProvider partner : partners) {
