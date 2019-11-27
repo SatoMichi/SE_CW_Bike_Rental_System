@@ -49,6 +49,7 @@ public class BikeProvider extends Account {
             if (this.isPartner(b.getProvider())) {
                 d.scheduleDelivery(b, this.getAddress(), b.getProvider().getAddress(), date.plusDays(1));
             }
+            else if (this == b.getProvider()) b.onPickup();
         }
     }
 
