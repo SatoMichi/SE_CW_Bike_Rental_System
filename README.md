@@ -4,11 +4,11 @@ Course Work 3 for Software Engineering
 **11/27: sato**  
  - some attribute which was not initialized is initialized.
  - added hashCode() in Bike and Quote, also equals() for Quote (only used for system test).
- - Finish implementing system test. There are 4 test; 
+ - Finish implementing system test. There are 4 test(all test passed);
     - getQuoteTest for checking getQuote use case
     - bookQuoteTest1 for checking bookQuote use case without delivery
     - bookQuoteTest2 for checking bookQuote use case with delivery
-    - returnBikePartnerTest for return Bike use case with partner
+    - returnBikePartnerTest for return Bike use case with partner  
 
 **Note**  
 If you think these test is not enough, you can add new test in SystemTest.
