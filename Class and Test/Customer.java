@@ -58,12 +58,12 @@ public class Customer extends Account {
     } 
     
     private static boolean isValid(String[] s) {
-    	if (s.length == 8) return true;
-    	return false;
+        if (s.length == 8) return true;
+        return false;
     }
 
     public static Condition toCondition(String[] s) {
-    	if (!isValid(s)) return null;
+        if (!isValid(s)) return null;
         // s[0] = BikeType
         BikeType type = new BikeType(s[0], BigDecimal.ZERO);
         
