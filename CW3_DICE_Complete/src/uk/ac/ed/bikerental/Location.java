@@ -14,7 +14,13 @@ package uk.ac.ed.bikerental;
  */
 
 public class Location {
+    /**
+     * PostCode which should follow format; AA9A9AA, A99AA, AA99AA, A9A9AA, A999AA, AA999AA
+     */
     private String postcode;
+    /**
+     * Address of the Location there is no specific required format, it should follow how address in the UK should be
+     */
     private String address;
 
     public Location(String postcode, String address) {
@@ -24,8 +30,8 @@ public class Location {
     }
 
     /**
-     * Method to check whether two location is near.
-     *  @param  other the other location
+     *  Method to check whether two location are near.
+     *  @param        other the other location
      *  @return       return true if they are near else return false
      */
     public boolean isNearTo(Location other) {
@@ -39,7 +45,11 @@ public class Location {
             return false;
         }
     }
-
+    /**
+     *  Helper function of isNear() method.
+     *  @param        postcode which is String
+     *  @return       return first two digit as int
+     */
     private int extractNums(String postcode) {
         String num = "";
         int j = 0;
