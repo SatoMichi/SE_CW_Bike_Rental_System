@@ -44,9 +44,9 @@ public class SystemTests {
     void setUpClass() throws Exception {
     //put these in to ProviderList
         BikeProvider[] providertest = {p1,p2,p3};
-        ProviderList.getProvider().clear();
+        ProviderList.providers.clear();
         for (BikeProvider p: providertest) {
-            ProviderList.getProvider().put(p, 1);
+            ProviderList.providers.put(p, 1);
         }
         
      // add bikes to BikeList
