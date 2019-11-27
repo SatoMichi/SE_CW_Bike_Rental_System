@@ -103,18 +103,6 @@ public class Customer extends Account {
         // constructor notify Customer and Provider
         
         String invoice = booking.printOrder();
-        DeliveryServiceFactory.setupMockDeliveryService();
-        DeliveryService delivery = DeliveryServiceFactory.getDeliveryService();
-        
-        for (Quote q : quotes) {
-            Bike b = q.getBike();
-            BikeProvider p = b.getProvider();
-            b.book(date);
-            
-            if (d) {
-                delivery.scheduleDelivery(b, p.getAddress(), this.getAddress(), date.getEnd());
-            }
-        }
         System.out.printf("%s\n", invoice);
         return booking;
     }
@@ -124,5 +112,3 @@ public class Customer extends Account {
     }
 
 }
-
-
