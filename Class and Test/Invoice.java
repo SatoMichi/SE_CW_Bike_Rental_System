@@ -7,7 +7,6 @@ public class Invoice {
 	private Collection<Quote> quotes;
 	private Customer customer;
 	private DateRange date;
-	private Location address;
 	
 	public Invoice(int n, Collection<Quote> q, Customer c, DateRange d) {
 		this.orderNo = n;
@@ -31,18 +30,17 @@ public class Invoice {
 	private BigDecimal getTotalPrice() {
 		BigDecimal price = new BigDecimal(0);
 		for (Quote q : quotes) {
-			price.add(q.getBike().getPrice());
+			price = price.add(q.getBike().getPrice());
 		}
 		return price;
 	}
 	
 	public String toString() {
 		String ans = "";
-		ans += String.format("Order Number: %d \nBike(s) booked: %sDate booked: %s \nAddress: %s \nCustomer: %s \nTotal price: %s \n", 
+		ans += String.format("Order Number: %d \nBike(s) booked: %sDate booked: %s \nCustomer: %s \nTotal price: %s \n", 
 				orderNo,
 				this.getBikesInfo(),
 				date.toString(),
-				address.toString(),
 				customer.getName(),
 				getTotalPrice().toString());
 		
