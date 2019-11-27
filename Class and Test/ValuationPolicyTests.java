@@ -1,4 +1,4 @@
-//package uk.ac.ed.bikerental;
+package uk.ac.ed.bikerental;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
@@ -14,7 +14,7 @@ public class ValuationPolicyTests {
 
     @BeforeEach
     void setUp() throws Exception {
-        
+
         // set LinearDepreciation
         ld = new LinearDepreciation();
         // set DoubleDecliningBalanceDepreciation
@@ -25,7 +25,7 @@ public class ValuationPolicyTests {
         bike = new Bike(type, new BigDecimal(20), provider, LocalDate.of(2016, 06, 01));
        // set now
         now = LocalDate.of(2019,12,31);
-        
+
         //System.out.print("Depreciation Rate is 0.1 (10%), ");
         //System.out.println("Bike Original Value is Both 900");
         //System.out.print("Bike Registered Date is 2016/06/01, ");
@@ -33,7 +33,7 @@ public class ValuationPolicyTests {
         //System.out.println(now.getYear() - bike.getRegDate().getYear())
         ;
     }
-    
+
     // TODO: Write tests for valuation policies
     @Test
     public void testLD() {

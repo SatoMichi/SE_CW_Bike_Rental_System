@@ -1,33 +1,34 @@
+package uk.ac.ed.bikerental;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Quote {
     private Bike bike;
     private BigDecimal deposit;
-    
+
     public Quote(Bike bike) {
         this.setBike(bike);
         setDeposit("");
     }
-    
+
     public Quote(Bike bike, String n) {
-    	this.setBike(bike);
-    	setDeposit(n);
+        this.setBike(bike);
+        setDeposit(n);
     }
-    
+
     private void setDeposit(String n) {
-    	switch (n) {
-    		case "LinearDepreciation":
-    			this.deposit = new LinearDepreciation().calculateValue(this.bike, LocalDate.now());
-    			break;
-    		case "DoubleDecliningBalanceDepreciation":
-    			this.deposit = new DoubleDecliningBalanceDepreciation().calculateValue(this.bike, LocalDate.now());
-    			break;
-    		default:
-    			this.deposit = bike.getProvider().getRate().multiply(bike.getType().getReplacementValue());
-    	}
+        switch (n) {
+            case "LinearDepreciation":
+                this.deposit = new LinearDepreciation().calculateValue(this.bike, LocalDate.now());
+                break;
+            case "DoubleDecliningBalanceDepreciation":
+                this.deposit = new DoubleDecliningBalanceDepreciation().calculateValue(this.bike, LocalDate.now());
+                break;
+            default:
+                this.deposit = bike.getProvider().getRate().multiply(bike.getType().getReplacementValue());
+        }
     }
-    
+
     public Bike getBike() {
         return bike;
     }
@@ -51,5 +52,5 @@ public class Quote {
     public boolean equals(Object obj) {
         return this.hashCode() == obj.hashCode();
     }
-    
+
 }

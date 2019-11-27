@@ -1,4 +1,4 @@
-//package uk.ac.ed.bikerental;
+package uk.ac.ed.bikerental;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
@@ -7,23 +7,23 @@ import java.util.Objects;
 /**
  * This class is used to represent DateRange.
  * It includes method to check whether two DateRange is overlapped or not.
- * 
+ *
  * @param start starting of date range
  * @param end of starting of date range
  *
  */
 public class DateRange {
     private LocalDate start, end;
-    
+
     public DateRange(LocalDate start, LocalDate end) {
         this.start = start;
         this.end = end;
     }
-    
+
     public LocalDate getStart() {
         return this.start;
     }
-    
+
     public LocalDate getEnd() {
         return this.end;
     }
@@ -38,7 +38,7 @@ public class DateRange {
 
     /**
      * This method check whether this DateRange and other DateRange have overlaps.
-     * @param other DateRage to compare with 
+     * @param other DateRage to compare with
      * @return return true if there is overlap, else return false
      */
     public Boolean overlaps(DateRange other) {
@@ -74,7 +74,7 @@ public class DateRange {
         DateRange other = (DateRange) obj;
         return Objects.equals(end, other.end) && Objects.equals(start, other.start);
     }
-    
+
     public String toString() {
         return this.start.toString() + " - " + this.end.toString();
     }

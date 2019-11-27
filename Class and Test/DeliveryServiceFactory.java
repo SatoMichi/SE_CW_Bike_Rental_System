@@ -1,4 +1,4 @@
-//package uk.ac.ed.bikerental;
+package uk.ac.ed.bikerental;
 
 public class DeliveryServiceFactory {
     private static DeliveryService deliveryServiceInstance;
