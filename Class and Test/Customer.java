@@ -32,17 +32,19 @@ public class Customer extends Account {
         return quotes;
     } 
     
-    @SuppressWarnings("unchecked")
     private List<Bike> searchBike (Condition c){
         List <Bike> results = new ArrayList<> ();
-        for (Bike b: (List<Bike>)BikeList.getBikes().keys()) {
+        for (Bike b: BikeList.bikes.keySet()) {
+            
             if (c.getMaxPrice().compareTo(b.getPrice()) > 0 &&
                 b.getPrice().compareTo(c.getMinPrice()) > 0 &&
                 c.getProvider().getName() == b.getProvider().getName() &&
                 c.getType().getType() == b.getType().getType() &&
                 c.getLocation().isNearTo(b.getProvider().getAddress()) &&
-                b.isAvail(c.getDate()) )
+                b.isAvail(c.getDate())
+                )
             {
+                //System.out.println(b.toString());
                 results.add(b);
             }
         }
@@ -56,7 +58,7 @@ public class Customer extends Account {
 
     public static Condition toCondition(String[] s) {
         // s[0] = BikeType
-        BikeType type = new BikeType(s[0], null);
+        BikeType type = new BikeType(s[0], BigDecimal.ZERO);
         
         // s[1] = minPrice, s[2] = maxPrice
         BigDecimal minPrice = new BigDecimal(s[1]);
@@ -67,41 +69,50 @@ public class Customer extends Account {
         
         // s[5] = startDate, s[6] = endDate
         // have to follow "2019/09/09" this format
-        LocalDate start = LocalDate.parse(s[5], DateTimeFormatter.ofPattern("yyyymmdd"));
-        LocalDate end   = LocalDate.parse(s[6], DateTimeFormatter.ofPattern("yyyymmdd"));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDate start = LocalDate.parse(s[5], formatter);
+        LocalDate end   = LocalDate.parse(s[6], formatter);
         DateRange date = new DateRange(start,end);
         
         // s[7] = name of Provider
-        Hashtable<BikeProvider, Integer> listofProvider = ProviderList.getProvider();
-        BikeProvider provider = listofProvider.entrySet()
-        	                    .stream()
-        	                    .filter(p -> p.getKey().getName() == s[7])
-        	                    .findFirst()
-        	                    .get()
-        	                    .getKey(); // return first element which has the name s[7] in the list of Bike Provider
+        List<BikeProvider> listofProvider = ProviderList.providers;
+            
+        BikeProvider provider = null;
+        for (BikeProvider p: listofProvider) {
+            if (p.getName() == s[7]) {provider =  p;}
+        }
+         
         
         // s[8] = number
         int number = Integer.parseInt(s[8]);
-        
+        /*
+        System.out.println(type.getType());
+        System.out.println(minPrice);
+        System.out.println(maxPrice);
+        System.out.println(location);
+        System.out.println(date);
+        System.out.println(provider);
+        System.out.println(number);
+        */
         return new Condition(type,minPrice,maxPrice,location, date, provider, number);
     }
+    
     // DateRange is inputed.
     public Booking bookQuote(Collection<Quote> quotes, boolean d, DateRange date) {
         Booking booking = new Booking(quotes, this, date, d);
         // constructor notify Customer and Provider
-        // if customer chooses to have bike delivered, d will be set to true
+        
         String invoice = booking.printOrder();
         DeliveryServiceFactory.setupMockDeliveryService();
         DeliveryService delivery = DeliveryServiceFactory.getDeliveryService();
+        
         for (Quote q : quotes) {
             Bike b = q.getBike();
             BikeProvider p = b.getProvider();
             b.book(date);
+            
             if (d) {
-                delivery.scheduleDelivery(b, 
-                        p.getAddress(), 
-                        this.getAddress(),
-                        date.getEnd());
+                delivery.scheduleDelivery(b, p.getAddress(), this.getAddress(), date.getEnd());
             }
         }
         System.out.printf("%s\n", invoice);
@@ -113,4 +124,5 @@ public class Customer extends Account {
     }
 
 }
+
 
