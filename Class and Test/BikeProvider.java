@@ -7,7 +7,7 @@ public class BikeProvider extends Account {
 	private String openingHours;
 	private List<BikeProvider> partners;
 	private BigDecimal depositRate;
-	private String depositPolicy;
+	private String depositPolicy = "";
 	
 	public BikeProvider(String name, String email, int phone, Location address, String openingHours, double d) {
 		super(name, address, phone, email);
@@ -17,10 +17,11 @@ public class BikeProvider extends Account {
 	
 	public BigDecimal getRate() { return this.depositRate;}
 	public void setRate(int d) { this.depositRate = new BigDecimal(d);}
-	public String getDepositPolicy() { return this.depositPolicy;}
-	public void setDepositPolicy(String x) { this.depositPolicy = x;}
 	public void addPartner(BikeProvider p) { partners.add(p);}
 	public String getHours() { return this.openingHours;}
+	
+	public String getDepositPolicy() { return this.depositPolicy;}
+    public void setDepositPolicy(String x) { this.depositPolicy = x;}
 	
 	public boolean isPartner(BikeProvider p) {
 		for (BikeProvider partner : partners) {
@@ -52,10 +53,10 @@ public class BikeProvider extends Account {
     }
 	
 	protected void register(Bike b, int count) {
-		BikeList.getBikes().put(b, count);
+		BikeList.bikes.put(b, count);
 	}
 	
 	protected void unregister(Bike b) {
-		BikeList.getBikes().remove(b);
+		BikeList.bikes.remove(b);
 	}
 }
