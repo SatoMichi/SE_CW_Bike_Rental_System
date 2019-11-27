@@ -44,6 +44,9 @@ public class Booking {
             if (this.delivery) {
                 delivery.scheduleDelivery(b, p.getAddress(), this.customer.getAddress(), date.getEnd());
             }
+            else {
+                b.onDropoff();
+            }
         }
     }
 
