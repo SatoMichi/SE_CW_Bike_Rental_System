@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Bike implements Deliverable {
     
@@ -12,7 +13,7 @@ public class Bike implements Deliverable {
     private BigDecimal price;
     private BikeProvider provider;
     private final LocalDate regDate;
-    private boolean availability;
+    private boolean availability = true;
     
     public Bike(BikeType type, BigDecimal price, BikeProvider provider, LocalDate regDate) {
         this.type = type;
@@ -43,6 +44,7 @@ public class Bike implements Deliverable {
     }
     
     public boolean isAvail(DateRange date) {
+        if (booked.size() == 0) {return true;}
         for (int i = 0; i < booked.size(); i++) {
             if (!booked.get(i).overlaps(date)) return true && this.availability;
         }
@@ -61,5 +63,9 @@ public class Bike implements Deliverable {
 	@Override
 	public void onDropoff() {
 		availability = false;
+	}
+	@Override
+    public int hashCode() {
+        return type.getType().hashCode() + price.hashCode() + provider.getName().hashCode() + regDate.hashCode();
 	}
 }
