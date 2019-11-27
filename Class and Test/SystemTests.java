@@ -46,7 +46,7 @@ public class SystemTests {
         BikeProvider[] providertest = {p1,p2,p3};
         ProviderList.providers.clear();
         for (BikeProvider p: providertest) {
-            ProviderList.providers.put(p, 1);
+            ProviderList.providers.add(p);
         }
         
      // add bikes to BikeList
