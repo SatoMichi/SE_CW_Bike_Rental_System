@@ -155,41 +155,101 @@ public class SystemTests {
     }
     
     @Test
-    // when bike is retirned to original provider, then there is no specific required action.
+    void returnBikeTest() {
+        // preparation for getting orderNumber
+        Customer customer 
+            = new Customer("Customer", new Location("EH91NJ", "Somewhere"), 12345689, "email", 0000000000000000);
+    
+        DateRange date = new DateRange(LocalDate.of(2019, 01, 01), LocalDate.of(2019,01,05));
+        
+        List<Quote> quotes = new ArrayList<>();
+        Bike[] bookedBike = {b1,b5,b10};
+        for (Bike b: bookedBike) {
+            quotes.add(new Quote(b));
+        }
+        
+        Booking bookpre = customer.bookQuote(quotes, false, date);
+        
+        int orderNumber = bookpre.getOrderNumber();
+            
+        // test start: get booking
+        Booking book = null;
+        for (Booking b: ListofBooking.bookings) {
+            if (b.getOrderNumber() == orderNumber) {
+                book = b;
+            }
+        }
+        // check status of bike
+        for (Quote q: book.getbookedQuotes()) {
+            assert(q.getBike().getAvailability());
+            assert(q.getBike().isAvail(new DateRange(LocalDate.now(), LocalDate.now().plusDays(1))));
+        }
+    }
+    
+    @Test
     void returnBikePatnerTest() {
+        
         p1.addPartner(p2);
+        // preparation for getting orderNumber
+        Customer customer 
+            = new Customer("Customer", new Location("EH91NJ", "Somewhere"), 12345689, "email", 0000000000000000);
+    
+        DateRange datepre = new DateRange(LocalDate.of(2019, 01, 01), LocalDate.of(2019,01,05));
+        
+        List<Quote> quotes = new ArrayList<>();
+        Bike[] bookedBike = {b1,b5,b10};
+        for (Bike b: bookedBike) {
+            quotes.add(new Quote(b));
+        }
+        
+        Booking bookpre = customer.bookQuote(quotes, false, datepre);
+        
+        int orderNumber = bookpre.getOrderNumber();
+            
+        // test start: get booking
+        Booking book = null;
+        for (Booking b: ListofBooking.bookings) {
+            if (b.getOrderNumber() == orderNumber) {
+                book = b;
+            }
+        }
         // from booking extract partners bike
         ArrayList<Bike> partnerBike = new ArrayList<>();
-        Booking book = ListofBooking.bookings.get(0);
-        
         for (Quote q: book.getbookedQuotes()) {
             if (p1.isPartner(q.getBike().getProvider())) {
                 partnerBike.add(q.getBike());
             }
         }
-        // orderNumber is notified.
-        int orderNumber = book.getOrderNumber();
         
         LocalDate date = LocalDate.now();
         p1.returnBikePartner(orderNumber,date);
         
         // all partner bike is scheduled for delivery
         MockDeliveryService delivery = (MockDeliveryService) DeliveryServiceFactory.getDeliveryService();
-        for (Bike b: partnerBike) {
-            assert(delivery.getPickupsOn(date.plusDays(1)).contains(b));
+        for (Bike bk: partnerBike) {
+            assert(delivery.getPickupsOn(date.plusDays(1)).contains(bk));
         } 
         
     }
     
     @Test
     void IntegrationTest() {
-        // get quote
+        p1.setDepositPolicy("LinearDepreciation");
+        p2.setDepositPolicy("DoubleDecliningBalanceDepreciation");
+        // User get quote
         Customer customer 
             = new Customer("Customer1", new Location("EH91NJ", "Somewhere"), 12345689, "email", 0000000000000000);
         
         String[] search = {"MTB", "0", "100", "EH91NJ", "Somewhaere", "2019/01/01", "2019/01/05", "Provider1", "3"};
         
         List <Quote> quotes = (List<Quote>) customer.getQuote(search);
+        
+        // check policy woking
+        for (Quote q: quotes) {
+            if (q.getBike().getProvider() != p3 ) {
+                assert(q.getDeposit() != q.getBike().getProvider().getRate().multiply(q.getBike().getType().getReplacementValue()));
+            }
+        }
         
         List <Quote> expect = new ArrayList<>();
         Bike[] expectedBike = {b1,b11,b20};
@@ -204,7 +264,8 @@ public class SystemTests {
         // searched result is equal to expected result
         assert(same);
         
-        // book quote
+        
+        // User book quote
         DateRange date = new DateRange(LocalDate.of(2019, 01, 01), LocalDate.of(2019,01,02));
         
         Booking book = customer.bookQuote(quotes, true, date);
@@ -223,19 +284,25 @@ public class SystemTests {
             assert(delivery.getPickupsOn(date.getEnd()).contains(q.getBike()));
         } 
         
+        
+        // Partner get bikes
         p2.addPartner(p2);
         // from booking extract partners bike
-        ArrayList<Bike> partnerBike = new ArrayList<>();
-        Booking book1 = ListofBooking.bookings.get(0);
+        int orderNumber = book.getOrderNumber();
         
+        Booking book1 = null;
+        for (Booking b: ListofBooking.bookings) {
+            if (b.getOrderNumber() == orderNumber) {
+                book1 = b;
+            }
+        }
+        // pick out partners bike
+        ArrayList<Bike> partnerBike = new ArrayList<>();
         for (Quote q: book1.getbookedQuotes()) {
             if (p1.isPartner(q.getBike().getProvider())) {
                 partnerBike.add(q.getBike());
             }
         }
-        // orderNumber is notified.
-        int orderNumber = book1.getOrderNumber();
-        
         LocalDate date1 = LocalDate.now();
         p1.returnBikePartner(orderNumber,date1);
         
@@ -244,5 +311,19 @@ public class SystemTests {
         for (Bike b: partnerBike) {
             assert(delivery1.getPickupsOn(date1.plusDays(1)).contains(b));
         } 
+        
+        
+        // Original Bike Provider get bikes with order number 
+        Booking book2 = null;
+        for (Booking b: ListofBooking.bookings) {
+            if (b.getOrderNumber() == orderNumber) {
+                book2 = b;
+            }
+        }
+        // check status of bike
+        for (Quote q: book2.getbookedQuotes()) {
+            assert(q.getBike().getAvailability());
+            assert(q.getBike().isAvail(new DateRange(LocalDate.now(), LocalDate.now().plusDays(1))));
+        }
     }
 }
