@@ -47,5 +47,9 @@ public class Quote {
     public int hashCode() {
         return bike.hashCode();
     }
+    @Override
+    public boolean equals(Object obj) {
+        return this.hashCode() == obj.hashCode();
+    }
     
 }
