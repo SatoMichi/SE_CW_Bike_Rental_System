@@ -43,5 +43,9 @@ public class Quote {
     public void setDeposit(BigDecimal deposite) {
         this.deposit = deposite;
     }
+    @Override
+    public int hashCode() {
+        return bike.hashCode();
+    }
     
 }
