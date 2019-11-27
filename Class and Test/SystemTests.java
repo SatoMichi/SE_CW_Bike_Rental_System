@@ -46,7 +46,7 @@ public class SystemTests {
         BikeProvider[] providertest = {p1,p2,p3};
         ProviderList.getProvider().clear();
         for (BikeProvider p: providertest) {
-            ProviderList.providers.put(p);
+            ProviderList.getProvider().put(p, 1);
         }
         
      // add bikes to BikeList
@@ -59,11 +59,7 @@ public class SystemTests {
      // Setup mock delivery service before each tests
         DeliveryServiceFactory.setupMockDeliveryService();
     }
-        
-    
-    void experimant() {
-        
-    }
+
     
     // TODO: Write system tests covering the three main use cases
     @Test
@@ -107,7 +103,7 @@ public class SystemTests {
         Customer customer 
             = new Customer("Customer1", new Location("EH91NJ", "Somewhere"), 12345689, "email", 0000000000000000);
         
-        DateRange date = new DateRange(LocalDate.of(2019, 01, 01), LocalDate.of(2019,01,02));
+        DateRange date = new DateRange(LocalDate.of(2019, 01, 01), LocalDate.of(2019,01,05));
         
         List<Quote> quotes = new ArrayList<>();
         Bike[] bookedBike = {b1,b5,b10};
@@ -183,5 +179,70 @@ public class SystemTests {
             assert(delivery.getPickupsOn(date.plusDays(1)).contains(b));
         } 
         
+    }
+    
+    @Test
+    void IntegrationTest() {
+        // get quote
+        Customer customer 
+            = new Customer("Customer1", new Location("EH91NJ", "Somewhere"), 12345689, "email", 0000000000000000);
+        
+        String[] search = {"MTB", "0", "100", "EH91NJ", "Somewhaere", "2019/01/01", "2019/01/05", "Provider1", "3"};
+        
+        List <Quote> quotes = (List<Quote>) customer.getQuote(search);
+        
+        List <Quote> expect = new ArrayList<>();
+        Bike[] expectedBike = {b1,b11,b20};
+        for (Bike b: expectedBike) {
+            expect.add(new Quote(b));
+        }
+        
+        boolean same = quotes.size() == expect.size();
+        for (Quote q: quotes) {
+            same = same && expect.contains(q);
+        }
+        // searched result is equal to expected result
+        assert(same);
+        
+        // book quote
+        DateRange date = new DateRange(LocalDate.of(2019, 01, 01), LocalDate.of(2019,01,02));
+        
+        Booking book = customer.bookQuote(quotes, true, date);
+        
+        // Booking is successfully added to List of Booking
+        assert(ListofBooking.bookings.contains(book));
+        
+        // non-available date range of each bike is updated.
+        for (Quote q: book.getbookedQuotes()) {
+            assertEquals(q.getBike().isAvail(date), false);
+        }
+        
+        // all the bike is scheduled for delivery
+        MockDeliveryService delivery = (MockDeliveryService) DeliveryServiceFactory.getDeliveryService();
+        for (Quote q: book.getbookedQuotes()) {
+            assert(delivery.getPickupsOn(date.getEnd()).contains(q.getBike()));
+        } 
+        
+        p2.addPartner(p2);
+        // from booking extract partners bike
+        ArrayList<Bike> partnerBike = new ArrayList<>();
+        Booking book1 = ListofBooking.bookings.get(0);
+        
+        for (Quote q: book1.getbookedQuotes()) {
+            if (p1.isPartner(q.getBike().getProvider())) {
+                partnerBike.add(q.getBike());
+            }
+        }
+        // orderNumber is notified.
+        int orderNumber = book1.getOrderNumber();
+        
+        LocalDate date1 = LocalDate.now();
+        p1.returnBikePartner(orderNumber,date1);
+        
+        // all partner bike is scheduled for delivery
+        MockDeliveryService delivery1 = (MockDeliveryService) DeliveryServiceFactory.getDeliveryService();
+        for (Bike b: partnerBike) {
+            assert(delivery1.getPickupsOn(date1.plusDays(1)).contains(b));
+        } 
     }
 }
