@@ -13,6 +13,9 @@ import java.util.Objects;
  *
  */
 public class DateRange {
+    /**
+     * "start" is start date of this DateRange, "end" is end date of this DateRange
+     */
     private LocalDate start, end;
 
     public DateRange(LocalDate start, LocalDate end) {
@@ -55,13 +58,19 @@ public class DateRange {
         // else
         return false;
     }
-
+    /**
+     * Override of the hashCode() method
+     * @return  return hashed value using to parameter end and start.
+     */
     @Override
     public int hashCode() {
         // hashCode method allowing use in collections
         return Objects.hash(end, start);
     }
-
+    /**
+     * Override of the equals() method
+     * @return  return true if they are same objects or have same start and end fields.
+     */
     @Override
     public boolean equals(Object obj) {
         // equals method for testing equality in tests
