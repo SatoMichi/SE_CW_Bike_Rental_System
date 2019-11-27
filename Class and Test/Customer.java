@@ -22,6 +22,7 @@ public class Customer extends Account {
     
     public Collection<Quote> getQuote(String[] s){
         Condition c = toCondition(s);
+        if (c == null) return null;
         List <Quote> quotes = new ArrayList<>();
         List <Bike> results = searchBike(c);
        
@@ -55,8 +56,14 @@ public class Customer extends Account {
         
         return results;
     } 
+    
+    private static boolean isValid(String[] s) {
+    	if (s.length == 8) return true;
+    	return false;
+    }
 
     public static Condition toCondition(String[] s) {
+    	if (!isValid(s)) return null;
         // s[0] = BikeType
         BikeType type = new BikeType(s[0], BigDecimal.ZERO);
         
@@ -112,3 +119,5 @@ public class Customer extends Account {
     }
 
 }
+
+
