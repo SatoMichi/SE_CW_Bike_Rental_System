@@ -5,7 +5,7 @@ import java.util.List;
 
 public class BikeProvider extends Account {
 	private String openingHours;
-	private List<BikeProvider> partners;
+	private List<BikeProvider> partners = new ArrayList<>();
 	private BigDecimal depositRate;
 	private String depositPolicy = "";
 	
@@ -40,14 +40,13 @@ public class BikeProvider extends Account {
 				break;
 			}
 		}
+		    
 		DeliveryServiceFactory.setupMockDeliveryService();
 		DeliveryService d = DeliveryServiceFactory.getDeliveryService();
+		
 		for (Bike b : bikes) {
 			if (this.isPartner(b.getProvider())) {
-				d.scheduleDelivery(b, 
-						this.getAddress(), 
-						b.getProvider().getAddress(), 
-						date.plusDays(1));
+				d.scheduleDelivery(b, this.getAddress(), b.getProvider().getAddress(), date.plusDays(1));
 			}
 		}
     }
