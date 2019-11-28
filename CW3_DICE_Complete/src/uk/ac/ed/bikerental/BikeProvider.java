@@ -31,7 +31,7 @@ public class BikeProvider extends Account {
         return false;
     }
 
-    protected void returnBikePartner(int orderNumber, LocalDate date) {
+    protected void returnBike(int orderNumber, LocalDate date) {
         List<Bike> bikes = new ArrayList<Bike>();
         for (Booking b : ListofBooking.bookings) {
             if (b.getOrderNumber() == orderNumber) {
@@ -49,6 +49,7 @@ public class BikeProvider extends Account {
             if (this.isPartner(b.getProvider())) {
                 d.scheduleDelivery(b, this.getAddress(), b.getProvider().getAddress(), date.plusDays(1));
             }
+            else if (this == b.getProvider()) b.onPickup();
         }
     }
 

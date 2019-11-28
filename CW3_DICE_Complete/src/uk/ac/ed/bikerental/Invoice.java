@@ -38,7 +38,7 @@ public class Invoice {
 
     public String toString() {
         String ans = "";
-        ans += String.format("Order Number: %d \nBike(s) booked: %sDate booked: %s \nCustomer: %s \nTotal price: %s \n",
+        ans += String.format("Order Number: %d \nBike(s) booked:\n%sDate booked: %s \nCustomer: %s \nTotal price: %s \n",
                 orderNo,
                 this.getBikesInfo(),
                 date.toString(),
