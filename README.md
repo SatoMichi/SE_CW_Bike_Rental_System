@@ -1,5 +1,9 @@
 # SE_CW3_GitHub
 Course Work 3 for Software Engineering  
+========================================================================================================================================
+**11/27**  
+**All the source code is implemented and all the test passed. The file is ready to run on the DICE(not "make testlog" yet).**
+
 ----------------------------------------------------------------------------------------------------------------------------------------
 **11/27: sato**  
  - some attribute which was not initialized is initialized.
