@@ -64,12 +64,11 @@ public class SystemTests {
     // TODO: Write system tests covering the three main use cases
     @Test
     void getQuoteTest() {
-
         Customer customer
             = new Customer("Customer1", new Location("EH91NJ", "Somewhere"), 12345689, "email", 0000000000000000);
 
         String[] search = {"MTB", "0", "100", "EH91NJ", "Somewhaere", "2019/01/01", "2019/01/05", "Provider1", "3"};
-        
+
         List <Quote> quotes = (List<Quote>) customer.getQuote(search);
 
         List <Quote> expect = new ArrayList<>();
@@ -98,7 +97,7 @@ public class SystemTests {
         // searched result is equal to expected result
         assert(same);
     }
-    
+
     @Test
     void bookQuoteTest1() {
         Customer customer
@@ -132,7 +131,6 @@ public class SystemTests {
         DateRange date = new DateRange(LocalDate.of(2019, 01, 01), LocalDate.of(2019,01,02));
 
         List<Quote> quotes = new ArrayList<>();
-        
         Bike[] bookedBike = {b1,b5,b10};
         for (Bike b: bookedBike) {
             quotes.add(new Quote(b));
@@ -165,8 +163,7 @@ public class SystemTests {
         DateRange date = new DateRange(LocalDate.of(2019, 01, 01), LocalDate.of(2019,01,05));
 
         List<Quote> quotes = new ArrayList<>();
-        // all p1's bikes
-        Bike[] bookedBike = {b1,b2,b3};
+        Bike[] bookedBike = {b1,b5,b10};
         for (Bike b: bookedBike) {
             quotes.add(new Quote(b));
         }
@@ -182,12 +179,9 @@ public class SystemTests {
                 book = b;
             }
         }
-        //return all bikes to p1
-        p1.returnBike(orderNumber, book.getDate().getEnd());
-        
         // check status of bike
         for (Quote q: book.getbookedQuotes()) {
-            assert(q.getBike().getAvailability() == true);
+            assert(q.getBike().getAvailability());
             assert(q.getBike().isAvail(new DateRange(LocalDate.now(), LocalDate.now().plusDays(1))));
         }
     }
@@ -228,7 +222,7 @@ public class SystemTests {
         }
 
         LocalDate date = LocalDate.now();
-        p1.returnBike(orderNumber,date);
+        p1.returnBikePartner(orderNumber,date);
 
         // all partner bike is scheduled for delivery
         MockDeliveryService delivery = (MockDeliveryService) DeliveryServiceFactory.getDeliveryService();
@@ -250,7 +244,7 @@ public class SystemTests {
 
         List <Quote> quotes = (List<Quote>) customer.getQuote(search);
 
-        // check policy working
+        // check policy woking
         for (Quote q: quotes) {
             if (q.getBike().getProvider() != p3 ) {
                 assert(q.getDeposit() != q.getBike().getProvider().getRate().multiply(q.getBike().getType().getReplacementValue()));
@@ -310,7 +304,7 @@ public class SystemTests {
             }
         }
         LocalDate date1 = LocalDate.now();
-        p1.returnBike(orderNumber,date1);
+        p1.returnBikePartner(orderNumber,date1);
 
         // all partner bike is scheduled for delivery
         MockDeliveryService delivery1 = (MockDeliveryService) DeliveryServiceFactory.getDeliveryService();
