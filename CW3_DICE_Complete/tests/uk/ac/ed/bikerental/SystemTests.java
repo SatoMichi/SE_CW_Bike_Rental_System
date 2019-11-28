@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+// these test is according to our class sequence and communication diagram for each use case
 
 public class SystemTests {
  // prepare BikeProviders
@@ -64,14 +65,16 @@ public class SystemTests {
     // TODO: Write system tests covering the three main use cases
     @Test
     void getQuoteTest() {
-
+        // Initialize customer
         Customer customer
             = new Customer("Customer1", new Location("EH91NJ", "Somewhere"), 12345689, "email", 0000000000000000);
-
+        // Searching requirement
         String[] search = {"MTB", "0", "100", "EH91NJ", "Somewhaere", "2019/01/01", "2019/01/05", "Provider1", "3"};
-        
+
+        // customer called getQuote()
         List <Quote> quotes = (List<Quote>) customer.getQuote(search);
 
+        // creating expected quote list returned by getQuote() called above
         List <Quote> expect = new ArrayList<>();
         Bike[] expectedBike = {b1,b11,b20};
         for (Bike b: expectedBike) {
@@ -91,6 +94,9 @@ public class SystemTests {
             System.out.println(q.getBike().toString());
         }*/
 
+        // if the length of the returned quote and expected quote is same,
+        // and every element in one quote list is contained in other,
+        // which means they are same.
         boolean same = quotes.size() == expect.size();
         for (Quote q: quotes) {
             same = same && expect.contains(q);
@@ -98,26 +104,32 @@ public class SystemTests {
         // searched result is equal to expected result
         assert(same);
     }
-    
+
     @Test
     void bookQuoteTest1() {
+        // initialized customer
         Customer customer
             = new Customer("Customer1", new Location("EH91NJ", "Somewhere"), 12345689, "email", 0000000000000000);
 
+        //DateRange which is inputed by customer in searching process
         DateRange date = new DateRange(LocalDate.of(2019, 01, 01), LocalDate.of(2019,01,05));
 
+        // creating list of quote for test
         List<Quote> quotes = new ArrayList<>();
         Bike[] bookedBike = {b1,b5,b10};
         for (Bike b: bookedBike) {
             quotes.add(new Quote(b));
         }
 
+        // customer called bookQuote()
+        // it will notify to both provider and customer
+        // in this case delivery is not required
         Booking book = customer.bookQuote(quotes, false, date);
 
-        // Booking is successfully added to List of Booking
+        // check Booking is successfully added to List of Booking
         assert(ListofBooking.bookings.contains(book));
 
-        // non-available date range of each bike is updated.
+        // check non-available date range of each bike is updated.
         for (Quote q: book.getbookedQuotes()) {
             assertEquals(q.getBike().isAvail(date), false);
         }
@@ -126,29 +138,34 @@ public class SystemTests {
 
     @Test
     void bookQuoteTest2() {
+        // initialize customer
         Customer customer
             = new Customer("Customer1", new Location("EH91NJ", "Somewhere"), 12345689, "email", 0000000000000000);
 
+        //DateRange which is inputed by customer in searching process
         DateRange date = new DateRange(LocalDate.of(2019, 01, 01), LocalDate.of(2019,01,02));
 
+        // creating list of quote for test
         List<Quote> quotes = new ArrayList<>();
-        
         Bike[] bookedBike = {b1,b5,b10};
         for (Bike b: bookedBike) {
             quotes.add(new Quote(b));
         }
 
+        // customer called bookQuote()
+        // it will notify to both provider and customer
+        // in this case delivery is required so booking will schedule delivery
         Booking book = customer.bookQuote(quotes, true, date);
 
-        // Booking is successfully added to List of Booking
+        // check Booking is successfully added to List of Booking
         assert(ListofBooking.bookings.contains(book));
 
-        // non-available date range of each bike is updated.
+        // check non-available date range of each bike is updated.
         for (Quote q: book.getbookedQuotes()) {
             assertEquals(q.getBike().isAvail(date), false);
         }
 
-        // all the bike is scheduled for delivery
+        // check all the bike is scheduled for delivery
         MockDeliveryService delivery = (MockDeliveryService) DeliveryServiceFactory.getDeliveryService();
         for (Quote q: book.getbookedQuotes()) {
             assert(delivery.getPickupsOn(date.getEnd()).contains(q.getBike()));
@@ -170,9 +187,10 @@ public class SystemTests {
         for (Bike b: bookedBike) {
             quotes.add(new Quote(b));
         }
-
+        // create Booking for test.
         Booking bookpre = customer.bookQuote(quotes, false, date);
 
+        // got orderNumber
         int orderNumber = bookpre.getOrderNumber();
 
         // test start: get booking
@@ -184,7 +202,7 @@ public class SystemTests {
         }
         //return all bikes to p1
         p1.returnBike(orderNumber, book.getDate().getEnd());
-        
+
         // check status of bike
         for (Quote q: book.getbookedQuotes()) {
             assert(q.getBike().getAvailability() == true);
@@ -194,7 +212,7 @@ public class SystemTests {
 
     @Test
     void returnBikePatnerTest() {
-
+        // add partner
         p1.addPartner(p2);
         // preparation for getting orderNumber
         Customer customer
@@ -210,6 +228,7 @@ public class SystemTests {
 
         Booking bookpre = customer.bookQuote(quotes, false, datepre);
 
+        // got orderNumber
         int orderNumber = bookpre.getOrderNumber();
 
         // test start: get booking
@@ -228,9 +247,10 @@ public class SystemTests {
         }
 
         LocalDate date = LocalDate.now();
+        // return Bikes
         p1.returnBike(orderNumber,date);
 
-        // all partner bike is scheduled for delivery
+        // check all partner bike is scheduled for delivery
         MockDeliveryService delivery = (MockDeliveryService) DeliveryServiceFactory.getDeliveryService();
         for (Bike bk: partnerBike) {
             assert(delivery.getPickupsOn(date.plusDays(1)).contains(bk));
@@ -240,8 +260,11 @@ public class SystemTests {
 
     @Test
     void IntegrationTest() {
+        // using extension of ValuationPolicy
         p1.setDepositPolicy("LinearDepreciation");
         p2.setDepositPolicy("DoubleDecliningBalanceDepreciation");
+
+
         // User get quote
         Customer customer
             = new Customer("Customer1", new Location("EH91NJ", "Somewhere"), 12345689, "email", 0000000000000000);
@@ -292,10 +315,10 @@ public class SystemTests {
 
 
         // Partner get bikes
-        p2.addPartner(p2);
+        p2.addPartner(p1);
         // from booking extract partners bike
         int orderNumber = book.getOrderNumber();
-
+        // searching booking
         Booking book1 = null;
         for (Booking b: ListofBooking.bookings) {
             if (b.getOrderNumber() == orderNumber) {
@@ -310,7 +333,8 @@ public class SystemTests {
             }
         }
         LocalDate date1 = LocalDate.now();
-        p1.returnBike(orderNumber,date1);
+
+        p2.returnBike(orderNumber,date1);
 
         // all partner bike is scheduled for delivery
         MockDeliveryService delivery1 = (MockDeliveryService) DeliveryServiceFactory.getDeliveryService();
