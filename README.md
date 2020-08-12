@@ -9,7 +9,7 @@
     The Folder "Inf2C-SE-Bike-Rental-Skeleton-master" is give from University of Edinburgh Course.
 
     * 日本語説明：
-    エディンバラ大学情報科二年生の”ソフトウェアエンジニアリングへの導入”というコースの
+    エディンバラ大学情報科二年生の"ソフトウェアエンジニアリングへの導入"というコースの
     最終課題であるレンタルバイクシステムの開発用のレポジトリ。
     "Inf2C-SE-Bike-Rental-Skeleton-master"フォルダーはエディンバラ大学のコースから
     支給されたスケルトンプロジェクトである。
